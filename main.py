@@ -4,7 +4,7 @@ import random
 dictionary_filename = "data/500-worst-passwords-processed.txt"
 password_frequency_filename = "data/rockyou-withcount-processed.txt"
 
-results_file = "results/data.csv"
+results_file = "data.csv"
 
 
 # Method to pick a key from a dictionary based on the frequency of the key
@@ -123,6 +123,7 @@ def main():
     parser.add_argument("n1", metavar="N1", help="Min password length", type=int)
     parser.add_argument("n2", metavar="N2", help="Exact passcode length", type=int)
     parser.add_argument("-its", metavar="ITS", help="Number of runs to undertake", default=1, type=int)
+    parser.add_argument("-save_file", metavar="F", help="Filename to save to", default=results_file)
 
     args = parser.parse_args()
 
@@ -155,7 +156,7 @@ def main():
             if x % 1000000 == 0:
                 print float(x) / float(args.m), full_guesses, char_guesses
         row = (full_guesses, char_guesses, guess_password, guess_passcode, "\r")
-        fd = open(results_file, 'a+')
+        fd = open("results/"+args.save_file, 'a+')
         fd.write(",".join(map(str, row)))
         fd.close()
 
