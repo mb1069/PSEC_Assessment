@@ -1,0 +1,12 @@
+\select@language {british}
+\contentsline {section}{\numberline {1}Question 1}{2}{section.1}
+\contentsline {subsection}{\numberline {i.}}{2}{subsection.1.1}
+\contentsline {section}{\numberline {2}Question 2}{2}{section.2}
+\contentsline {subsection}{\numberline {i.}Design \& Implementation}{2}{subsection.2.1}
+\contentsline {subsection}{\numberline {ii.}Results}{2}{subsection.2.2}
+\contentsline {subsection}{\numberline {iii.}Analysis}{2}{subsection.2.3}
+\contentsline {subsection}{\numberline {iv.}Counter-measures}{2}{subsection.2.4}
+\contentsline {section}{Appendix \numberline {A}Mainswitch.py}{3}{Appendix.a.A}
+\contentsline {section}{Appendix \numberline {B}Additional statistics}{5}{Appendix.a.B}
+\contentsline {subsection}{\numberline {i.}Individual statistics}{5}{subsection.a.B.1}
+\contentsline {subsection}{\numberline {ii.}Data significance}{7}{subsection.a.B.2}

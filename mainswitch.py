@@ -1,5 +1,6 @@
 import argparse as ap
 import random
+import multiprocessing
 
 dictionary_filename = "data/500-worst-passwords-processed.txt"
 password_frequency_filename = "data/rockyou-withcount-processed.txt"
@@ -10,7 +11,7 @@ results_file = "data.csv"
 # Method to pick a key from a dictionary based on the frequency of the key
 # (frequency of a key is the key's value in the dict)
 def weighted_pick(passwords, maxkey):
-    r = random.randint(0, maxkey-1)
+    r = random.randint(0, maxkey - 1)
     return passwords[r].v
 
 
@@ -110,7 +111,8 @@ class PasswordPicker(object):
 
     # Method to randomly pick a password/passcode combination from the list
     def pick_password_passcode(self):
-        return weighted_pick(self.valid_passwords, self.totalpasswords), weighted_pick(self.valid_passcodes, self.totalpasscodes)
+        return weighted_pick(self.valid_passwords, self.totalpasswords), weighted_pick(self.valid_passcodes,
+                                                                                       self.totalpasscodes)
 
 
 def main():
@@ -135,13 +137,7 @@ def main():
     # Pick user password/passcode (to be guessed)
     password_distrib = PasswordPicker(password_frequency_filename, args.n1, args.n2)
 
-
     for i in range(0, args.its):
-
-        
-        # print "Attempting: "
-        # print "PASSWORD | PASSCODE"
-        # print guess_password, guess_passcode
         full_guesses = 0
         char_guesses = 0
         for x in range(0, args.m):
@@ -154,32 +150,10 @@ def main():
                     char_guesses += 1
             if x % 1000000 == 0:
                 print float(x) / float(args.m), full_guesses, char_guesses
-        row = (full_guesses, char_guesses, guess_password, guess_passcode, "\r")
-        fd = open("results/"+args.save_file, 'a+')
+        row = (full_guesses, char_guesses, "\r")
+        fd = open("results/" + args.save_file, 'a+')
         fd.write(",".join(map(str, row)))
         fd.close()
-
-
-    # for x in range(0, args.m):
-    #     password_distrib.pick_password_passcode()
-    #     if x % 1000 == 0:
-    #         print x
-    #         for i in range(0, args.its):
-    #             guess_password, guess_passcode = password_list.pick_password_passcode(args.n1, args.n2)
-    #
-    #             print guess_password, guess_passcode
-    #             full_guesses = 0
-    #             char_guesses = 0
-    #             for x in range(0, args.m):
-    #                 password, passcode = password_distrib.pick_password_passcode()
-    #                 if match(passcode, guess_passcode):
-    #                     if matchfull(password, guess_password):
-    #                         full_guesses += 1
-    #                     if match(password, guess_password):
-    #                         char_guesses += 1
-    #                 if x % 10000 == 0:
-    #                     print float(x) / float(args.m), full_guesses, char_guesses
-
 
 
 if __name__ == "__main__":
