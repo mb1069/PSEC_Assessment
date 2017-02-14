@@ -1,6 +1,7 @@
 import argparse as ap
 import random
 
+
 dictionary_filename = "data/500-worst-passwords-processed.txt"
 password_frequency_filename = "data/rockyou-withcount-processed.txt"
 
@@ -10,7 +11,7 @@ results_file = "data.csv"
 # Method to pick a key from a dictionary based on the frequency of the key
 # (frequency of a key is the key's value in the dict)
 def weighted_pick(passwords, maxkey):
-    r = random.randint(0, maxkey-1)
+    r = random.randint(0, maxkey - 1)
     return passwords[r].v
 
 
@@ -34,7 +35,7 @@ def matchfull(password, guess):
 
 
 # Class to store passwords for guesses
-class PasswordAttackList(object):
+class AttackPasswords(object):
     # Create using file with line-seperated passwords
     def __init__(self, filename, n1, n2):
         self.passwords = []
@@ -56,7 +57,7 @@ class PasswordAttackList(object):
             raise ValueError('Invalid passcode lengths, no passcodes of this length exist in the dictionary file.')
 
     # Method to randomly pick a password/passcode of valid lengths from the list of common passwords
-    def pick_password_passcode(self, n1, n2):
+    def pick_password_passcode(self):
         password = random.choice(self.valid_passwords)
         passcode = random.choice(self.valid_passcodes)
         return password, passcode
@@ -68,7 +69,7 @@ class Value:
 
 
 # Class to store passwords to be guessed
-class PasswordPicker(object):
+class VictimPasswords(object):
     # Create using file with frequency / password tuples on each line
     def __init__(self, filename, n1, n2):
         f = open(filename, 'r')
@@ -100,11 +101,9 @@ class PasswordPicker(object):
             password_dict[k] = int(v)
             line = f.readline()
         f.close()
-
+        print len(self.valid_passwords), len(self.valid_passcodes)
         # self.valid_passwords = dict((k, password_dict[k]) for k in password_dict.keys() if len(k) >= n1)
         # self.valid_passcodes = dict((k, password_dict[k]) for k in password_dict.keys() if len(k) == n2)
-        print len(self.valid_passwords), len(self.valid_passcodes)
-        print self.totalpasswords, self.totalpasscodes
         if len(self.valid_passwords) == 0:
             raise ValueError('Invalid password lengths, no passwords of this length exist in the dictionary file.')
         if len(self.valid_passcodes) == 0:
@@ -112,7 +111,8 @@ class PasswordPicker(object):
 
     # Method to randomly pick a password/passcode combination from the list
     def pick_password_passcode(self):
-        return weighted_pick(self.valid_passwords, self.totalpasswords), weighted_pick(self.valid_passcodes, self.totalpasscodes)
+        return weighted_pick(self.valid_passwords, self.totalpasswords), weighted_pick(self.valid_passcodes,
+                                                                                       self.totalpasscodes)
 
 
 def main():
@@ -122,8 +122,8 @@ def main():
     parser.add_argument("m", metavar="M", help="Number of guesses", type=int)
     parser.add_argument("n1", metavar="N1", help="Min password length", type=int)
     parser.add_argument("n2", metavar="N2", help="Exact passcode length", type=int)
-    parser.add_argument("-its", metavar="ITS", help="Number of runs to undertake", default=1, type=int)
-    parser.add_argument("-save_file", metavar="F", help="Filename to save to", default=results_file)
+    parser.add_argument("-its", help="Number of runs to undertake", default=1, type=int)
+    parser.add_argument("--save_file", help="Saves results to data/"+results_file, action='store_true')
 
     args = parser.parse_args()
 
@@ -132,55 +132,33 @@ def main():
 
     print "Loading guess passwords"
     # Initialise list of passwords to sample from during attack
-    password_list = PasswordAttackList(dictionary_filename, args.n1, args.n2)
+    password_list = AttackPasswords(dictionary_filename, args.n1, args.n2)
 
     # Pick user password/passcode (to be guessed)
-    password_distrib = PasswordPicker(password_frequency_filename, args.n1, args.n2)
-
-
+    password_distrib = VictimPasswords(password_frequency_filename, args.n1, args.n2)
+    print "Loaded passwords, beginning bulk guessing"
     for i in range(0, args.its):
-
-        guess_password, guess_passcode = password_list.pick_password_passcode(args.n1, args.n2)
-        print "Attempting: "
-        print "PASSWORD | PASSCODE"
-        print guess_password, guess_passcode
         full_guesses = 0
         char_guesses = 0
         for x in range(0, args.m):
+            guess_password, guess_passcode = password_list.pick_password_passcode()
             password, passcode = password_distrib.pick_password_passcode()
             if match(passcode, guess_passcode):
                 if matchfull(password, guess_password):
                     full_guesses += 1
                 if match(password, guess_password):
                     char_guesses += 1
-            if x % 1000000 == 0:
-                print float(x) / float(args.m), full_guesses, char_guesses
-        row = (full_guesses, char_guesses, guess_password, guess_passcode, "\r")
-        fd = open("results/"+args.save_file, 'a+')
-        fd.write(",".join(map(str, row)))
-        fd.close()
-
-
-    # for x in range(0, args.m):
-    #     password_distrib.pick_password_passcode()
-    #     if x % 1000 == 0:
-    #         print x
-    #         for i in range(0, args.its):
-    #             guess_password, guess_passcode = password_list.pick_password_passcode(args.n1, args.n2)
-    #
-    #             print guess_password, guess_passcode
-    #             full_guesses = 0
-    #             char_guesses = 0
-    #             for x in range(0, args.m):
-    #                 password, passcode = password_distrib.pick_password_passcode()
-    #                 if match(passcode, guess_passcode):
-    #                     if matchfull(password, guess_password):
-    #                         full_guesses += 1
-    #                     if match(password, guess_password):
-    #                         char_guesses += 1
-    #                 if x % 10000 == 0:
-    #                     print float(x) / float(args.m), full_guesses, char_guesses
-
+        if args.save_file is not None:
+            row = (full_guesses, char_guesses, "\r")
+            fd = open("results/" + results_file, 'a+')
+            fd.write(",".join(map(str, row)))
+            fd.close()
+    print "Ran bulk guessing "+str(args.its)+" times"
+    print "Password/passcode length of: ", args.n1, "/", args.n2 
+    print "Successful guesses using a full password: ", full_guesses
+    print "Successful guesses using a sub-sampled password: ", char_guesses
+    if args.save_file is not None:
+        print "Data was saved at data/"+results_file
 
 
 if __name__ == "__main__":
