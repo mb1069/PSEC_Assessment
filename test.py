@@ -122,11 +122,15 @@ def main():
                     partial_attempts+=vv
                 total_attempts+=vv
             i+=1
-            if i==100:
+            if i==1000:
                 i = 0
-                pbar.update(100)
+                pbar.update(1000)
 
     print partial_guesses, partial_attempts, total_guesses, total_attempts
+    row = (partial_guesses, partial_attempts, total_guesses, total_attempts, "\r")
+    fd = open("results/" + str(password_len), 'a+')
+    fd.write(",".join(map(str, row)))
+    fd.close()
 
 
 if __name__ == "__main__":
