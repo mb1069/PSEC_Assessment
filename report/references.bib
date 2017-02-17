@@ -1,4 +1,92 @@
 
+@ARTICLE{Kosamkar_undated-ik,
+  title  = "Implementation and Analysis of Password Guessing Resistant Protocol
+            ({PGRP)}: A Literature Survey",
+  author = "Kosamkar, Miss Vaishali K and Deshmukh, V M"
+}
+
+@INPROCEEDINGS{Florencio2007-yp,
+  title     = "Do Strong Web Passwords Accomplish Anything?",
+  booktitle = "Proceedings of the 2Nd {USENIX} Workshop on Hot Topics in
+               Security",
+  author    = "Flor{\^e}ncio, Dinei and Herley, Cormac and Coskun, Baris",
+  publisher = "USENIX Association",
+  pages     = "10:1--10:6",
+  series    = "HOTSEC'07",
+  year      =  2007,
+  address   = "Berkeley, CA, USA"
+}
+
+@ARTICLE{Mourouzis2016-zs,
+  title         = "On The Security Evaluation of Partial Password
+                   Implementations",
+  author        = "Mourouzis, Theodosis and Wojcik, Marcin and Komninos, Nikos",
+  abstract      = "A partial password is a mode of password-based
+                   authentication that is widely used, especially in the
+                   financial sector. It is based on a challenge-response
+                   protocol, where at each login attempt, a challenge
+                   requesting characters from randomly selected positions of a
+                   pre-shared secret is presented to the user. This model could
+                   be seen as a cheap way of preventing for example a malware
+                   or a key-logger installed on a user's device to learn the
+                   full password in a single step. Despite of the widespread
+                   adoption of this mechanism, especially by many UK banks,
+                   there is limited material in the open literature. Questions
+                   like how the security of the scheme varies with the sampling
+                   method employed to form the challenges or what are the
+                   existing server-side implementations are left unaddressed.
+                   In this paper, we study questions like how the security of
+                   this mechanism varies in relation to the number of
+                   challenge-response pairs available to an attacker under
+                   different ways of generating challenges. In addition, we
+                   discuss possible server-side implementations as
+                   ``unofficially'' listed in different online forums by
+                   information security ex- perts. To the best of our knowledge
+                   there is no formal academic literature in this direction and
+                   one of the aims of this paper is to motivate other
+                   researchers to study this topic.",
+  month         =  "31~" # dec,
+  year          =  2016,
+  archivePrefix = "arXiv",
+  primaryClass  = "cs.CR",
+  eprint        = "1701.00104"
+}
+
+@INPROCEEDINGS{Aspinall2013-sh,
+  title      = "``Give Me Letters 2, 3 and 6!'': Partial Password
+                Implementations and Attacks",
+  booktitle  = "Financial Cryptography and Data Security",
+  author     = "Aspinall, David and Just, Mike",
+  editor     = "Sadeghi, Ahmad-Reza",
+  abstract   = "A partial password is a query of a subset of characters from a
+                full password, posed as a challenge such as ``Give me letters
+                2, 3 and 6 from your password''. Partial passwords are commonly
+                used in the consumer financial sector, both online and in
+                telephone banking. They provide a cheap way of providing a
+                varying challenge that prevents eavesdroppers or intermediate
+                systems learning a shared secret in a single step. Yet, despite
+                widespread adoption among millions of consumers, this mechanism
+                has had little attention in the academic literature. Answers to
+                obvious questions are not clear, for example, how many
+                observations are needed for an attacker to learn the complete
+                password, or to successfully answer the next challenge? In this
+                paper we survey a number of online banking implementations of
+                partial passwords, and investigate the security of the
+                mechanism. In particular, we look at guessing attacks with a
+                projection dictionary ranked by likelihood, and recording
+                attacks which use previous information collected by an
+                attacker. The combination of these techniques yields the best
+                attack on partial passwords.",
+  publisher  = "Springer Berlin Heidelberg",
+  pages      = "126--143",
+  series     = "Lecture Notes in Computer Science",
+  month      =  "1~" # apr,
+  year       =  2013,
+  language   = "en",
+  conference = "International Conference on Financial Cryptography and Data
+                Security"
+}
+
 @MISC{rockyoupasswords,
   title        = "{RockYou} Hack: From Bad To Worse",
   booktitle    = "{TechCrunch}",
@@ -10,5 +98,65 @@
   year         =  2009,
   howpublished = "\url{http://social.techcrunch.com/2009/12/14/rockyou-hack-security-myspace-facebook-passwords/}",
   note         = "Accessed: 2017-2-14"
+}
+
+
+@MISC{smartarchitect,
+  title        = "Smart Architects - Password sCrib - Key Into Your Digital
+                  World",
+  abstract     = "Smart Architects is a consultancy company based in Cambridge,
+                  UK. We specialise on IT security and cryptographic projects
+                  where understanding of problems and quality of results is
+                  high on the list of priorities.",
+  howpublished = "\url{https://www.smartarchitects.co.uk/news/9/67/Partial-Passwords-How.html}",
+  note         = "Accessed: 2017-2-17"
+}
+
+
+@MISC{noauthor_undated-lk,
+  title        = "Developer's Guide | {reCAPTCHA} | Google Developers",
+  booktitle    = "Google Developers",
+  howpublished = "\url{https://developers.google.com/recaptcha/intro}",
+  note         = "Accessed: 2017-2-17"
+}
+
+
+@ARTICLE{Alsaleh2012-ek,
+  title    = "Revisiting Defenses against {Large-Scale} Online Password
+              Guessing Attacks",
+  author   = "Alsaleh, M and Mannan, M and van Oorschot, P C",
+  abstract = "Brute force and dictionary attacks on password-only remote login
+              services are now widespread and ever increasing. Enabling
+              convenient login for legitimate users while preventing such
+              attacks is a difficult problem. Automated Turing Tests (ATTs)
+              continue to be an effective, easy-to-deploy approach to identify
+              automated malicious login attempts with reasonable cost of
+              inconvenience to users. In this paper, we discuss the inadequacy
+              of existing and proposed login protocols designed to address
+              large-scale online dictionary attacks (e.g., from a botnet of
+              hundreds of thousands of nodes). We propose a new Password
+              Guessing Resistant Protocol (PGRP), derived upon revisiting prior
+              proposals designed to restrict such attacks. While PGRP limits
+              the total number of login attempts from unknown remote hosts to
+              as low as a single attempt per username, legitimate users in most
+              cases (e.g., when attempts are made from known, frequently-used
+              machines) can make several failed login attempts before being
+              challenged with an ATT. We analyze the performance of PGRP with
+              two real-world data sets and find it more promising than existing
+              proposals.",
+  journal  = "IEEE Trans. Dependable Secure Comput.",
+  volume   =  9,
+  number   =  1,
+  pages    = "128--141",
+  month    =  jan,
+  year     =  2012,
+  keywords = "security of data;ATT;PGRP;automated malicious login;automated
+              turing tests;dictionary attacks;large scale online password
+              guessing attacks;login protocols;password guessing resistant
+              protocol;remote login services;Access
+              protocols;Authentication;Browsers;Computer
+              security;Dictionaries;IP
+              networks;Protocols;Usability;ATTs.;Online password guessing
+              attacks;brute force attacks;password dictionary"
 }
 
