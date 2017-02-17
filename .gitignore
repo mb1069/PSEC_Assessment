@@ -89,3 +89,13 @@ ENV/
 .ropeproject
 
 .idea/
+
+submission/
+submission.zip
+report/*.aux
+report/*.out
+report/*.pdf
+report/*.gz
+report/*.toc
+report/*.bbl
+report/*.blg
