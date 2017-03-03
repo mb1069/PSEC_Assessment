@@ -19,7 +19,12 @@
 \usepackage{pgfplots}
 \usepackage[normalem]{ulem}
 \usepackage{longtable}
+\usepackage{multirow}
 \useunder{\uline}{\ul}{}
+\usepackage{titlesec}
+
+\setcounter{secnumdepth}{4}
+
 
 \usepgfplotslibrary{statistics}
 
@@ -57,14 +62,133 @@
 \tableofcontents
 \clearpage
 
+
 \section{Question 1 - Security risk management assessment}
 \subsection{Purpose and scope}
+Purpose and scope
+Ensure availability and integrity of platoon maintenance, leaving, joining, creation and dissolving actions. Ensure compliance with IT statute and regulation.
 
-\subsection{Security risks}
+Risk evaluation criteria
+Violation of IT statute and regulation
+Impact the availability of platoon-related services (maintenance, leaving and joining vehicles, platoon creation and dissolving)
+Impact on safety-providing systems
+Disclose user information
+Legal repercussions of the system
+
+Impact criteria
+How serious if the violation of IT statute/regulation due to the occurrence of the risk?
+How serious is the risk posed to the LV/FV/OV?
+How serious is the disclosure of customer information?
+Effects on integrity of the system
+Damage to reputation (currently at 60% trust)
+Breaches of legal requirements
+Loss of turnover / as a result of adverse effects by the occurrence of a risk?
+
+Risk acceptance criteria
+Threshold for violation of IT statute and regulation - low
+Threshold for unavailability of platooning for short period of time - medium, long time period - low
+Threshold for loss of turnover -
+Threshold for data inaccuracy
+\subsection{Definition of security risks}
 \subsubsection{Identification}
 \subsubsection{Analysis}
 \subsubsection{Evaluation}
 \subsubsection{Treatment}
+
+\subsection{Risk identification and treatment plan}
+
+\subsubsection{Threats}
+\begin{table}[]
+\begin{tabular}{|p{2cm}|p{2cm}|p{6cm}|p{3cm}|p{1.5cm}|}
+\hline
+\textbf{Type of threat origin} & \textbf{Origin of threat} & \textbf{Threat(s)} & \textbf{ISO Type} & \textbf{Origin} \\ \hline
+\multirow{3}{2cm}{\textbf{Human (insider)}} & LV/PLV driver & Tampering with hardware/software, theft of equipment: LVD uses equipment for personal gain/mischief. & Compromise of information & A, D \\ \cline{2-5} 
+ & Back office admin & Unauthorised use of equipment: abuse of PLV/PFV matching to maliciously guide vehiclesFraudulent copying of software for industrial espionage & Unauthorised actions & A, D \\ \cline{2-5} 
+ & Hardware installation engineer & Error in use: misconfiguration of vehicle equipment, improper maintenance & Error in use, Unauthorised use & A, D \\ \hline
+\multirow{2}{2cm}{\textbf{Human (outsider)}} & Computer criminal & Denial of Actions: DDoS on Back Office systemTampering with software: Subversion of Back Office, (erroneous data about lead vehicle positions)Position detection/Disclosure of client vehicle dataInterception of V2I communication leading to disclosure of payment or client informationSpoofing of V2V communication: endanger following vehicles & Unauthorised actions, Compromise of information & D \\ \cline{2-5} 
+ & Terrorist & Remote spying, disclosure of position, theft of equipment through tampering of software/hardware or unauthorised use of equipment & Compromise of information & D \\ \hline
+\textbf{Vehicles} & LV/FV/ PLV/PFV (all vehicles) & Equipment failure/malfunction,Loss of power supply, all Physical damage types, all Natural events (eg climatic/seismic): resulting in damage to vehicle and/or other vehicles and environment & Physical damage, Loss of essential services, Natural events, dist. due to radiation & A, D, E \\ \hline
+\multirow{2}{2cm}{\textbf{Technical infrastructure}} & V2V, V2I communication & Failure of telecommunication equipment or loss of power supply: unable to coordinate platoon forming/joining between vehicles & Loss of essential service, Natural events, Physical damage & A, D, E \\ \cline{2-5} 
+ & Back office server & Failure of telecommunication equipment or loss of power supply: unable to coordinate platoon forming/joining between vehicles & Loss of essential service, Natural events, Physical damage & A, D, E \\ \hline
+\textbf{Environ - mental} & Climatic conditions & System is used in non-tested conditions, resulting in inadequate response to road/weather conditions and possible accidents & Natural events & E \\ \hline
+\end{tabular}
+\caption{My caption}
+\label{my-label}
+\end{table}
+
+
+\subsubsection{Related assets}
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+
+\begin{longtable}{|p{2cm}|p{2cm}|p{5cm}|p{1cm}|p{2cm}|p{2.5cm}|}
+\hline
+\textbf{Type} & \textbf{Name} & \textbf{Description} & \textbf{Prim/ Supp} & \textbf{Owner} & \textbf{Related business process - relevance} \\ \hline
+\multirow{7}{2cm}{\textbf{Business processes (platoon management)}} & \textbf{Create platoon} & Begin a platoon to allow FV to join & P & BOA & Essential process \\ \cline{2-6} 
+ & \textbf{Maintain platoon} & Travel along a road as a platoon & P & BOA & Essential process \\ \cline{2-6} 
+ & \textbf{Join/Leave platoon} & PFV join an existing platoon, FV leave their current platoon & P & BOA & Essential process \\ \cline{2-6} 
+ & \textbf{Dissolve platoon} & All FV revert to manual control & P & LVD & Essential process \\ \cline{2-6} 
+ & \textbf{Guide to platoon} & Provide PFV with location for PLV or existing platoons & P & BOA & Essential process \\ \cline{2-6} 
+ & \textbf{Charge platoon} & Monetary transaction when joining platoon & S & BOA & Essential process \\ \cline{2-6} 
+ & \textbf{Register} & Synchronisation of PFV, PLV, FV, LV with BO & P & BOA & Essential process \\ \hline
+\multirow{4}{2cm}{\textbf{Hardware}} & \textbf{LV, PLV} & Lead vehicles, including all installed equipment & P & LVD, installation technician & All platoon-related business processes \\ \cline{2-6} 
+ & \textbf{FV, PFV} & Following vehicles & P & FVD, installation technician & All platoon-related business processes \\ \cline{2-6} 
+ & \textbf{V2V/ V2I comm.} & Communication equipment between vehicles or vehicles and back office & P & BOA, installation technician & All platoon-related business processes \\ \cline{2-6} 
+ & \textbf{Back office} & Server which provides respective PLV/PFV vehicle locations and guidance information. & P & BOA & All business processes \\ \hline
+\multirow{5}{2cm}{\textbf{Software}} & \textbf{Payment systems} & Financial revenue system & S & Unspecified, assumably BOA & Payment process \\ \cline{2-6} 
+ & \textbf{Back office server} & Holds information relating to user vehicles (with a form of user identification), and information regarding LV paths. May potentially contain payment information, depending on chosen implementation. & P & BOA, software developers, installation technician & All platoon-related business processes \\ \cline{2-6} 
+ & \textbf{Back office GUI} & Provides BOA with an interface to coordinate platoon operations & P & Software developer & All platoon-related business processes \\ \cline{2-6} 
+ & \textbf{Map manager} & Illustrates platoon operations to BOA & P & Software developer & All platoon-related business processes \\ \cline{2-6} 
+ & \textbf{Global data manager} & Handles platoon information and directives from BOA & P & Software developer & All platoon-related business processes \\ \hline
+\multirow{4}{2cm}{\textbf{Personnel}} & \textbf{LV/PLV driver} & Responsible for following pre-established route and maintaining platoon security &  & Director & All platoon-related business processes \\ \cline{2-6} 
+ & \textbf{FV/PFV driver (user)} & Responsible for guiding car into/out of platoon and of supervising road safety for his personal vehicle at all times &  & Director & All platoon-related business processes \\ \cline{2-6} 
+ & \textbf{Hardware installation \& Maintenance technicians} & Responsible for hardware on all vehicles & S & Director & Business processes (platoon management) \\ \cline{2-6} 
+ & \textbf{Back office admin} & Responsible for coordinating LV/PLV/FV/PFV to form platoons & P & Director & All platoon-related business processes \\ \hline
+\textbf{Location} & \textbf{Meeting point} & Arranged location for platoon operations, designated by BOA & P & BOA & Platoon creation \\ \hline
+\caption{My caption}
+\label{my-label}
+\end{longtable}
+
+\subsubsection{Incident scenarios}
+\begin{table}[]
+\centering
+\begin{tabular}{|p{4cm}|p{4cm}|p{3cm}|p{3cm}|}
+\hline
+\textbf{Incident scenario} & \textbf{Consequences} & \textbf{Business impact} & \textbf{Related assets} \\ \hline
+\textbf{IS1:} misconfiguration of vehicle control/actuators due to insufficient testing in extreme conditions leading to improper positioning in platoon, reporting incorrect position to BO & Decrease in fuel efficiency, danger of collision, incorrect location reporting results in inability to find appropriate platoons. & Low (fuel efficiency) to Very High (system failure leading to collision) & LV, PLV, FV, PFV, maintain platoon process, hardware technicians \\ \hline
+\textbf{IS2:} interception/abuse of V2I , V2V communication & Disclosure of charging related information, vehicle destination and status & High (Violation of IT statute/regulation) & LV, PLV, FV, PFV, V2I, V2V, communication, BOA \\ \hline
+\textbf{IS3:} spoofing of back office and communicating to vehicles & Clients can be incorrectly charged, malicious redirection of vehicles, disclosure of client location & High (Violation of IT statute/regulation) & LV, PLV, FV, PFV, V2I communication, back office, vehicle meeting points \\ \hline
+\textbf{IS4:} software failure of BO server due to hacking or bugs & Inability to coordinate vehicles, resulting in loss of income due to inactivity & Medium (short term) - High (long term), (Violation of IT statute/regulation if malicious) & V2I communication, back office \\ \hline
+IS5: data input error by BOA due to software or lack of experience & Inability to coordinate vehicles, resulting in loss of income due to inactivity, loss of data integrity for that entry & Medium & V2I communication, back office \\ \hline
+\textbf{IS6:} loss of GSM/GPS signal or map information & Inability to coordinate vehicles, resulting in loss of income due to inactivity & Medium (short term) - High (long term) & LV, PLV, FV, PFV, V2I communication, back office \\ \hline
+\textbf{IS7:} power failure in FV due to system misconfiguration or equipment failure & Inability to stay in patrol, potentially urgent driver attention needed to prevent accident & High (bad publicity, loss of income) & FV, PFV \\ \hline
+\textbf{IS8:} unauthorised access of BO server via hacking / spoofing vehicles & Compromise of information stored on the BO server (vehicle position/information, payment information, customer information) & High (Violation of IT statute/regulation, loss of income) & back office server \\ \hline
+\end{tabular}%
+\caption{Principal incident scenarios for a commercially viable implementation of SARTRE}
+\label{tab:incident_scenarios}
+\end{table}
+
+\clearpage
+\subsubsection{Risk treatment plan}
+
+\paragraph{IS8: BO server security against unauthorised access \newline} 
+
+As details of the BO server’s security are sparse, but the server manages business processes pertaining to user and payment information, ensuring the robustness of the BO server to attacks is paramount. The use of an off-the-shelf server product can provide a certain degree of security if properly installed, tested and maintained. Additional precautions should be taken to ensure vehicle to BO communication is not spoofed, as this could cause the release of charging related information to a hacker. As stated in the treatment plan for IS2, the GSM protocol relied on for security has been demonstrated broken using relatively cheap and accessible equipment, and therefore an additional layer of strong encryption should be used to ensure the confidentiality, integrity and nonrepudiation of communicated messages. This could be implemented using an AES based public key encryption system, which could use off-the-shelf solutions at a low implementation cost. Additional care should be used for testing and validation of the system, given the potential impact of the release of customer information and payments systems for malicious purposes. 
+
+\paragraph{IS4: Software failure of BO server due to hacking or software failure \newline} 
+
+Software failure of the back end server would cause the inability of the BOA to coordinate platoon operations, thereby reducing the occurrence of revenue-generating actions. Reducing the probability and duration of BO server downtime is therefore crucial to the effectivity of the system. This would require ensuring the adequacy of the implementation and configuration of the server, which can be achieved by extensive code review and testing of the server. Verifying the configuration of the server to existing industry standards could validate the effectiveness of the current server against the server standard required to mitigate this risk: viable standards include the ISO 27002 \citet{Iso2005-nn} or NIST Guide to General Server Security \citet{noauthor_undated-kw}. Additional care should be undertaken to defend against DDoS attacks: various defence mechanisms which could be implemented with a financial cost and delay in the product development can be found in \citet{Zargar2013-xx}.
+
+\paragraph{IS2: Interception \& abuse of V2I/V2V communication via GSM \newline}
+\label{par:IS2}
+
+In order to retrieve information from FV or PFV, spoofing of the back office could be achieved by recording un-encrypted communication between vehicles and the BO server, before replaying them in plain or manipulated form for malicious purposes. In addition, the data transmitted could simply be decrypted to obtain user information or payment information which is communicated during platoon operations. A demonstration of hacking using the same GSM technology was demonstrated at DefCon 2008 \cite{Paget2010-ne}, where a higher-powered transmission system could be used to spoof a standard GSM network, thereby replacing the back office server. Furthermore, \citet{Hulton2008-jr}demonstrated that GSM snooping could easily bypass encryption using low-cost easily accessible equipment. Therefore the SARTRE project cannot rely on risk transfer to secure it’s V2I or V2V communication via a GSM network, but could resolve this by pre-encrypting all communication using a commercial implementation of AES, or an equally robust encryption. This would complicate the procedure and cost of reading and mimicking the communication, thereby reducing the net gain obtained from the attack and the deterring the attempts of hackers. Implementing additional encryption would require additional implementations, and possibly modifications of hardware if additional performance is required, in addition to re-testing and validation. Alternately, using a different network system with more robust encryptions could solve the issue, such as military or law enforcement systems, although this may require governmental permission and as such may require large overhead administrative costs. 
+
+Furthermore, the presence of V2I or V2V communication could provide hackers a wireless access to vehicles, as demonstrated by \citet{Curri2015-zo}. As the self-driving functionality required in following cars is implemented by integrating the SARTRE system into the vehicle’s drive-by-wire control system, this may provide an additional entry point for hackers into the vehicle system, which could lead to the extraction of private user and payment information, in addition to the ability to maliciously affect the vehicle’s behaviour. It is therefore also possible for hackers to retrieve information from the cars, without regard to the BO server. The presence of a form of secure authentication/encryption on the car’s V2I interface could provide some risk reduction to this attack vector, and would require additional verification and validation to affirm its security standard.
+
+
+
+
 
 \clearpage
 
@@ -72,7 +196,7 @@
 \section{Question 2 - Bulk guessing tool}
 
 \subsubsection{Bulk guessing}
-Bulk guessing, as described by \citet{Florencio2007-yp}, is the action of attempting of accessing an authentication-protected account on a system by attempting to guess the password for a large number of accounts, using a large number of guess passwords (which are either randomly generated or randomly sampled from a dictionary). As password policies set in place by institutions aim to deter attackers from guessing a single password, the act of simultaneously breaking millions of accounts can yield a successful guesses on a few different accounts. The tool designed for this project aims to demonstrates the expected success rate of a bulk guessing algorithm using an attack dictionary, which is evaluated against a set of statistically common passwords from \citet{rockyoupasswords}.
+Bulk guessing, as described by \citet{Florencio2007-yp}, is the action of attempting of accessing an authentication-protected account on a system by attempting to guess the password for a large number of accounts, using a large number of guess passwords (which are either randomly generated or randomly sampled from a dictionary). As password policies set in place by institutions aim to deter attackers from guessing a single password, the act of simultaneously breaking millions of accounts can yield a successful guesses on a few different accounts. The tool designed for this project aims to demonstrates the expected success rate of a bulk guessing algorithm using an attack dictionary, which is evaluated against a set of statistically common passwords from \citet{Cubrilovic2009-wu}.
 
 \subsection{Design \& Implementation}
 The tool is implemented in python 2.7.6, and can be ran using the command \lstinline{python main.py M N1 N2} where M is the number of guesses, N1 is the minimum password length and N2 is the exact password length. This will print an output detailing the number of correct guesses for each authentication method. Additional options can be passed to the tool: \lstinline{-its n} runs the program n times, and \lstinline{--save_file} saves the results of each run to a datafile.
@@ -98,26 +222,26 @@ This was verified using a brute force script (see \autoref{app:bruteforce}, whic
 \begin{figure}
 	\begin{tikzpicture}
 	    \begin{axis}[
-	        width  = 0.85*\textwidth,
-	        height = 8cm,
-	        major x tick style = transparent,
-	        ybar=2*\pgflinewidth,
-	        bar width=14pt,
-	        ymajorgrids = true,
-	        ylabel = {Probability of password collisions},
-	        symbolic x coords={6, 7, 8},
-	        xtick = data,
-	        xlabel = Password length,
-	        enlarge x limits=0.25,
-	        ymin=0,
-	        legend cell align=left,
+	 width  = 0.85*\textwidth,
+	 height = 8cm,
+	 major x tick style = transparent,
+	 ybar=2*\pgflinewidth,
+	 bar width=14pt,
+	 ymajorgrids = true,
+	 ylabel = {Probability of password collisions},
+	 symbolic x coords={6, 7, 8},
+	 xtick = data,
+	 xlabel = Password length,
+	 enlarge x limits=0.25,
+	 ymin=0,
+	 legend cell align=left,
 	    ]
-	        \addplot[style={blue,fill=blue,mark=none}]
-	            coordinates {(6, 7.36E-04) (7,6.94E-04) (8,1.05E-03)};
+	 \addplot[style={blue,fill=blue,mark=none}]
+	    coordinates {(6, 7.36E-04) (7,6.94E-04) (8,1.05E-03)};
 
-	        \addplot[style={red,fill=red,mark=none}]
-	             coordinates {(6,1.56E-04) (7,2.02E-04) (8,4.50E-04)};
-	        \legend{full, partial}
+	 \addplot[style={red,fill=red,mark=none}]
+	     coordinates {(6,1.56E-04) (7,2.02E-04) (8,4.50E-04)};
+	 \legend{full, partial}
 	    \end{axis}
 	\end{tikzpicture}
 	\caption{Probability of guessing a password using character sampled authentication (Syfull) and full password authentication (Sypart).}
@@ -125,7 +249,7 @@ This was verified using a brute force script (see \autoref{app:bruteforce}, whic
 \end{figure}
 
 \subsubsection{Effects of password policy}
-The password policies have similar effects on both algorithms: increasing the passcode length decreases the number of successful guesses, whilst increasing the password length increases the number of successful guesses. The latter observation is at first surprising: as a larger password/passcode length would allow for a larger number of permutations, one would expect the number of successful guesses to decrease as the password's length increases due to a decreased probability. As this effect is observed for both forms of authentication, we can deduce it is not caused by the the difference in these systems (i.e: using 3 characters instead of a full password to establish validity). Further analysis of the data show that the number of valid passwords in our dataset decreases as we increase the minimum password length; for both our 500 attack passwords and the RockYou password distribution \cite{rockyoupasswords}. As visible in \autoref{fig:passwords_length}, this leads to a smaller number of possible guess password/account password combinations ($4 \times 10^6 $ for  passwords  of length $<= 8$, $9 \times 10^7$ for passwords of length $<= 6$). This results in a larger number of correct guesses for a fixed sample size, causing the effect seen in \autoref{fig:approach_comparison}. The effect does not occur for passcodes however, as the number of passcodes in \cite{rockyoupasswords} for each policy length remains roughly constant (89,595 for n=6 to 55,803 for n=8). 
+The password policies have similar effects on both algorithms: increasing the passcode length decreases the number of successful guesses, whilst increasing the password length increases the number of successful guesses. The latter observation is at first surprising: as a larger password/passcode length would allow for a larger number of permutations, one would expect the number of successful guesses to decrease as the password's length increases due to a decreased probability. As this effect is observed for both forms of authentication, we can deduce it is not caused by the the difference in these systems (i.e: using 3 characters instead of a full password to establish validity). Further analysis of the data show that the number of valid passwords in our dataset decreases as we increase the minimum password length; for both our 500 attack passwords and the RockYou password distribution \cite{Cubrilovic2009-wu}. As visible in \autoref{fig:passwords_length}, this leads to a smaller number of possible guess password/account password combinations ($4 \times 10^6 $ for  passwords  of length $<= 8$, $9 \times 10^7$ for passwords of length $<= 6$). This results in a larger number of correct guesses for a fixed sample size, causing the effect seen in \autoref{fig:approach_comparison}. The effect does not occur for passcodes however, as the number of passcodes in \cite{Cubrilovic2009-wu} for each policy length remains roughly constant (89,595 for n=6 to 55,803 for n=8). 
 
 We could therefore state that increasing the minimum password length policy can cause user accounts which utilise dictionary passwords to be more vulnerable to bulk guessing, as the the set of possible passwords is reduced as the minimum size increases.
 
@@ -148,74 +272,74 @@ We could therefore state that increasing the minimum password length policy can 
 	    	height=10cm,
 	    	width=10cm,
 	    	xtick={6,7,8},
-	        xlabel=Password length,
-	        ylabel=Number of successful guesses,
-	        legend pos=north west
+	 xlabel=Password length,
+	 ylabel=Number of successful guesses,
+	 legend pos=north west
 	    ]
 	    \addplot[
-	        mark=x,
-	        blue,
-	        error bars/.cd, y dir=both, y explicit,
+	 mark=x,
+	 blue,
+	 error bars/.cd, y dir=both, y explicit,
 	    ] plot coordinates {
-	        (6,9.25)   -=(0,0.033) += (0,0.438)
-	        (7,12.37)  -=(0,0.034) += (0,0.450)
-	        (8,26.68)  -=(0,0.058) += (0,0.759)
+	 (6,9.25)   -=(0,0.033) += (0,0.438)
+	 (7,12.37)  -=(0,0.034) += (0,0.450)
+	 (8,26.68)  -=(0,0.058) += (0,0.759)
 	    };
 	    \addlegendentry{full, passcode=6}
 
 	    \addplot[
-	        mark=x,
-	        red,
-	        error bars/.cd, y dir=both, y explicit,
+	 mark=x,
+	 red,
+	 error bars/.cd, y dir=both, y explicit,
 	    ] plot coordinates {
-	        (6,7.62)  -= (0,0.030) += (0,0.398)
-	        (7,10.60) -= (0,0.030) += (0,0.397)
-	        (8,23.19) -= (0,0.049) += (0,0.645)
+	 (6,7.62)  -= (0,0.030) += (0,0.398)
+	 (7,10.60) -= (0,0.030) += (0,0.397)
+	 (8,23.19) -= (0,0.049) += (0,0.645)
 	    };
 	    \addlegendentry{full, pass=7}    
 
 	    \addplot[
-	        mark=x,
-	        error bars/.cd, y dir=both, y explicit,
+	 mark=x,
+	 error bars/.cd, y dir=both, y explicit,
 	    ] plot coordinates {
-	        (6,5.23)  -= (0,0.025) += (0,0.329)
-	        (7,6.84)  -= (0,0.024) += (0,0.319)
-	        (8,15.09) -= (0,0.039) += (0,0.504)
+	 (6,5.23)  -= (0,0.025) += (0,0.329)
+	 (7,6.84)  -= (0,0.024) += (0,0.319)
+	 (8,15.09) -= (0,0.039) += (0,0.504)
 	    };
 	    \addlegendentry{full, pass=8}
 
 	    \addplot[
-	        mark=x,
-	        blue,
-	        dashed,
-	        error bars/.cd, y dir=both, y explicit,
+	 mark=x,
+	 blue,
+	 dashed,
+	 error bars/.cd, y dir=both, y explicit,
 	    ] plot coordinates {
-	        (6,32.68)  -=(0,0.053) += (0,0.695)
-	        (7,32.85)  -=(0,0.058) += (0,0.753)
-	        (8,51.64)  -=(0,0.078) += (0,1.026)
+	 (6,32.68)  -=(0,0.053) += (0,0.695)
+	 (7,32.85)  -=(0,0.058) += (0,0.753)
+	 (8,51.64)  -=(0,0.078) += (0,1.026)
 	    };
 	    \addlegendentry{partial, pass=6}
 
 	    \addplot[
-	        mark=x,
-	        red,
-	        dashed,
-	        error bars/.cd, y dir=both, y explicit,
+	 mark=x,
+	 red,
+	 dashed,
+	 error bars/.cd, y dir=both, y explicit,
 	    ] plot coordinates {
-	        (6,27.61) -= (0,0.053) += (0,0.690)
-	        (7,27.39) -= (0,0.057) += (0,0.749)
-	        (8,44.33) -= (0,0.070) += (0,0.921)
+	 (6,27.61) -= (0,0.053) += (0,0.690)
+	 (7,27.39) -= (0,0.057) += (0,0.749)
+	 (8,44.33) -= (0,0.070) += (0,0.921)
 	    };
 	    \addlegendentry{partial, pass=7}    
 
 	    \addplot[
-	        mark=x,
-	        dashed,
-	        error bars/.cd, y dir=both, y explicit,
+	 mark=x,
+	 dashed,
+	 error bars/.cd, y dir=both, y explicit,
 	    ] plot coordinates {
-	        (6,18.38)  -= (0,0.043) += (0,0.559)
-	        (7,17.93)  -= (0,0.046) += (0,0.599)
-	        (8,29.40)  -= (0,0.049) += (0,0.645)
+	 (6,18.38)  -= (0,0.043) += (0,0.559)
+	 (7,17.93)  -= (0,0.046) += (0,0.599)
+	 (8,29.40)  -= (0,0.049) += (0,0.645)
 	    };
 	    \addlegendentry{partial, pass=8}
 
@@ -227,11 +351,11 @@ We could therefore state that increasing the minimum password length policy can 
 
 \begin{figure}
 	\begin{tikzpicture}
-	    \begin{axis}[ybar, xtick = {6,7,8}, xlabel = Minimum password length, ylabel = Number of valid account passwords in \cite{rockyoupasswords}]
+	    \begin{axis}[ybar, xtick = {6,7,8}, xlabel = Minimum password length, ylabel = Number of valid account passwords in \cite{Cubrilovic2009-wu}]
 		\addplot table [
-		        col sep=comma,
-		        x=pass_size,
-		        y=num_pass,
+		 col sep=comma,
+		 x=pass_size,
+		 y=num_pass,
 		    ] {data/password_count.csv};
 	    \end{axis}	    
 	    \begin{axis}[
@@ -239,13 +363,13 @@ We could therefore state that increasing the minimum password length policy can 
     		axis x line=none, 
     		ylabel = Number of valid attack passwords out of 500]
 		\addplot table [
-		        col sep=comma,
-		        x=pass_size,
-		        y=guess_pass,
+		 col sep=comma,
+		 x=pass_size,
+		 y=guess_pass,
 		    ] {data/password_count.csv};
 	    \end{axis}
 	\end{tikzpicture}
-	\caption{Count of valid passwords in \cite{rockyoupasswords} for each password policy}
+	\caption{Count of valid passwords in \cite{Cubrilovic2009-wu} for each password policy}
 	\label{fig:passwords_length}
 \end{figure}
 
@@ -255,7 +379,7 @@ These two authentication systems are both viable systems, but differ in their ab
 
 Within a real-world scenario, an attacker could easily improve his success rate by using additional tools. This represents one of the major benefits of partial passwords: a recorded session may not be sufficient to provide authentication, assuming that the challenge indices change between the victim and attacker's login attempts; in contrast, a full password authentication would allow the entire password to be recorded, allowing the attack to break that security with ease. Mitigating the effectiveness of keyloggers is therefore the primary use of partial passwords. \citet{Aspinall2013-sh} demonstrates that keyloggers can nevertheless greatly improve the success rate against partial passwords: a 25\% success rate was observed using dictionary attack with a single recording (vs 5.5\% without keylogger), and 81\% using 4 recordings. These were undertaken using a slightly different password policy: 36 alphanumeric characters (excluding symbols), a password length of 8, a 3 character challenge and a 10 attempt lockout. It remains applicable to our given case study, thereby demonstrated that the presence of a keylogger on a system for an extended period of time can greatly mitigate the benefit of partial passwords. We should nevertheless consider that partial passwords would provide security against shoulder-surfing attacks, where the attacker observes the victim logging in, as it is unlikely that the attacker will observe as many logins in person than using a discrete keylogger. 
 
-Therefore, we can state that within the attack vector of password guessing through either bulk attack and/or keylogging, full and partial password authentication mitigate different attack vectors: partial passwords are more vulnerable to bulk guessing, but are more resistant to keylogging attacks, whilst full passwords are the opposite. Combining the two approaches may give some common benefit, as demonstrated by Lloyds Bank's system; this would complicate the attack by requiring both keylogging and bulk guessing (in either order) to guess the full password and partial passcode. In contrast, Virgin's authentication system could be cracked solely using bulk guessing, which could be optimised by a key logger.
+Therefore, we can state that within the attack vector of password guessing through either bulk attack and/or keylogging, full and partial password authentication mitigate different attack vectors: partial passwords are more vulnerable to bulk guessing, but are more resistant to keylogging attacks, whilst full passwords are the opposite. Combining the two approaches may give some common benefit, as demonstrated by Lloyds Bank's system; this would complicate the attack by requiring both keylogging and bulk guessing (in either order) to guess the full password and partial passcode. In contrast, Virgin's authentication system could be more rapidly cracked using bulk guessing, which could be optimised by a key logger. This conclusion would stand assuming both systems had single step authentication; we should note that Lloyd's use of two-step authentication does reduce it's complexity (assuming the authentication process fails after entering an invalid UserID/password combination, as the sum of the complexity of guessing each authentication system reflects the system's overall security (as opposed to the product of each in the Virgin Money system). This is due to the feasibility of first cracking the password, followed by repeatedly guessing the passcode using the known password to pass the first authentication.
 
 A further problem of partial passwords would include storing the password digest on a server side. While this is straightforward for full passwords, which can be fully salted and hashed to form the digest, partial passwords would require the use of a shared secret \cite{smartarchitect}, or storing multiple digests of every m-letter combination (where m is the size of the challenge) \cite{smartarchitect}. The latter solution would result in a large number of digests, which could be a source of vulnerability if a large sample of them were collected. 
 
