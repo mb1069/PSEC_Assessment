@@ -1,5 +1,5 @@
 
-\documentclass[british,10pt,a4paper]{article}
+\documentclass[british,11pt,a4paper]{article}
 \usepackage[british]{babel}
 \usepackage[margin=1in, bottom=0.75in, top=0.75in, footskip=0.25in]{geometry}
 \usepackage[titletoc]{appendix}
@@ -57,12 +57,19 @@
 \tableofcontents
 \clearpage
 
-\section{Question 1}
-\subsection{}
+\section{Question 1 - Security risk management assessment}
+\subsection{Purpose and scope}
+
+\subsection{Security risks}
+\subsubsection{Identification}
+\subsubsection{Analysis}
+\subsubsection{Evaluation}
+\subsubsection{Treatment}
+
 \clearpage
 
 
-\section{Question 2}
+\section{Question 2 - Bulk guessing tool}
 
 \subsubsection{Bulk guessing}
 Bulk guessing, as described by \citet{Florencio2007-yp}, is the action of attempting of accessing an authentication-protected account on a system by attempting to guess the password for a large number of accounts, using a large number of guess passwords (which are either randomly generated or randomly sampled from a dictionary). As password policies set in place by institutions aim to deter attackers from guessing a single password, the act of simultaneously breaking millions of accounts can yield a successful guesses on a few different accounts. The tool designed for this project aims to demonstrates the expected success rate of a bulk guessing algorithm using an attack dictionary, which is evaluated against a set of statistically common passwords from \citet{rockyoupasswords}.
@@ -83,7 +90,7 @@ Two methods implement the password authentication: $match(victim, guess)$ random
 \subsection{Results \& Analysis}
 \subsubsection{Comparison of authentication methods}
 \label{subsec:authentication_methods}
-Our implementation was ran 150 times for $n1, n2 \in \{6,7,8\}$, resulting in data with extremely precise confidence intervals as seen in \autoref{fig:approach_comparison}. The results demonstrate that for all combinations of password and passcode length, the second authentication system is more vulnerable to bulk guessing than the first. This is found to be statistically significant across all password/passcode combinations, as visible in \autoref{app:significant_stats} where a two-tailed Mann-Whitney test was used to show that $p<.01$ between each algorithm for all equivalent password/passcode policies. Partial password authentication is therefore between 1.91 and 3.5 times more likely to be randomly guessed, depending on the password/passcode policies chosen (minimum ratio at password/passcode of 8/7, and maximum ratio at 6/6). 
+Our implementation was ran 150 times for $n1, n2 \in \{6,7,8\}$, resulting in data with extremely precise confidence intervals as seen in \autoref{fig:approach_comparison}. The results demonstrate that for all combinations of password and passcode length, the second authentication system is more vulnerable to bulk guessing than the first. This is found to be statistically significant across all password/passcode combinations, as visible in \autoref{app:significant_stats} where a two-tailed Mann-Whitney test was used to show that $p<.01$ between each algorithm for all equivalent password/passcode policies. Partial password authentication is therefore between 1.91 and 3.5 times more likely to be randomly guessed, depending on the password/passcode policies chosen (minimum ratio at password/passcode of 8/7, and maximum ratio at 6/6).
 
 These observations are most likely due to two effects. Firstly, we should state that every successful password guess in the full password system will be a successful guess in system B (with partial password matching), as the indices compared in the partial password system form a subset of the indices compared to the full password. Secondly, full passwords require the victim and attacker passwords to have the same length; this is not always the case, as the policy sets only a minimum bound on the password length, leading to mis-matched password lengths. This would cause the guess to fail for a full password, but not a partial password (assuming the characters stated indices matched). Finally, there is a significant number of password collisions at various indices which allow a larger number of guess passwords to correctly guess a victim's password. 
 
@@ -113,14 +120,18 @@ This was verified using a brute force script (see \autoref{app:bruteforce}, whic
 	        \legend{full, partial}
 	    \end{axis}
 	\end{tikzpicture}
-	\caption{Probability of guessing a password using character sampled authentication (Syfull) and full apssword authentication (Sypart).}
+	\caption{Probability of guessing a password using character sampled authentication (Syfull) and full password authentication (Sypart).}
 	\label{fig:collision_prob}
 \end{figure}
 
 \subsubsection{Effects of password policy}
-The password policies have similar effects on both algorithms: increasing the passcode length decreases the number of successful guesses, whilst increasing the password length increases the number of successful guesses. The latter observation is at first surprising: as a larger password/passcode length would allow for a larger number of permutations, one would expect the number of successful guesses to decrease as the password's length increases due to a decreased probability. As this effect is observed for both forms of authentication, we can deduce it is not caused by the the difference in these systems (i.e: using 3 characters instead of a full password to establish validity). Further analysis of the data show that the number of valid passwords in our dataset decreases as we increase the minimum password length; for both our 500 attack passwords and the RockYou password distribution \cite{rockyoupasswords}. As visible in \autoref{fig:passwords_length}, this leads to a smaller number of possible guess password/account password combinations ($4 \times 10^6 $ for  passwords  of length $<= 8$, $9 \times 10^7$ for passwords of length $<= 6$). This results in a larger number of correct guesses for a fixed sample size, causing the effect seen in \autoref{fig:approach_comparison}. The effect does not occur for passcodes however, as the number of passcodes in \cite{rockyoupasswords} for each policy length remains roughly constant (89,595 for n=6 to 55,803 for n=8).
+The password policies have similar effects on both algorithms: increasing the passcode length decreases the number of successful guesses, whilst increasing the password length increases the number of successful guesses. The latter observation is at first surprising: as a larger password/passcode length would allow for a larger number of permutations, one would expect the number of successful guesses to decrease as the password's length increases due to a decreased probability. As this effect is observed for both forms of authentication, we can deduce it is not caused by the the difference in these systems (i.e: using 3 characters instead of a full password to establish validity). Further analysis of the data show that the number of valid passwords in our dataset decreases as we increase the minimum password length; for both our 500 attack passwords and the RockYou password distribution \cite{rockyoupasswords}. As visible in \autoref{fig:passwords_length}, this leads to a smaller number of possible guess password/account password combinations ($4 \times 10^6 $ for  passwords  of length $<= 8$, $9 \times 10^7$ for passwords of length $<= 6$). This results in a larger number of correct guesses for a fixed sample size, causing the effect seen in \autoref{fig:approach_comparison}. The effect does not occur for passcodes however, as the number of passcodes in \cite{rockyoupasswords} for each policy length remains roughly constant (89,595 for n=6 to 55,803 for n=8). 
 
-This effect demonstrates some bias in the given data 
+We could therefore state that increasing the minimum password length policy can cause user accounts which utilise dictionary passwords to be more vulnerable to bulk guessing, as the the set of possible passwords is reduced as the minimum size increases.
+
+
+
+% TODO proof read
 
 %Papers to look at
 % https://www.usenix.org/legacy/event/hotsec07/tech/full_papers/florencio/florencio.pdf
@@ -130,7 +141,6 @@ This effect demonstrates some bias in the given data
 %Partial passwords
 %http://groups.inf.ed.ac.uk/security/passwords/pps.pdf
 % http://translate.google.pl/translate?sl=pl&tl=en&js=n&prev=_t&hl=pl&ie=UTF-8&layout=2&eotf=1&u=http://wampir.mroczna-zaloga.org/archives/235-o-haslach-maskowanych.html
-
 
 \begin{figure}
 	\begin{tikzpicture}
@@ -272,8 +282,8 @@ Finally, as \citet{Aspinall2013-sh} has demonstrated the significance of recordi
 \bibliographystyle{IEEEtranSN}
 \bibliography{references}
 \clearpage
-\begin{appendices}
 
+\begin{appendices}
 	\section{Main.py}\label{app:main}
 	\lstinputlisting[language=Python]{../main.py}	
 	\clearpage
@@ -382,7 +392,7 @@ Finally, as \citet{Aspinall2013-sh} has demonstrated the significance of recordi
 	\centering
 	\begin{tabular}{l|l|l|l|l|l|l|}
 	\cline{2-7}
-	 & \multicolumn{3}{l|}{\textbf{partial matching}} & \multicolumn{3}{l|}{\textbf{Full password matching}} \\ \cline{2-7} 
+	 & \multicolumn{3}{l|}{\textbf{Partial matching}} & \multicolumn{3}{l|}{\textbf{Full password matching}} \\ \cline{2-7} 
 	 & \textit{Successful guesses} & \textit{Attempts} & \textit{Success ratio} & \multicolumn{3}{l|}{\textit{Successful guesses}} \\ \hline
 	\multicolumn{1}{|l|}{\textbf{6}} & 1.49E+08 & 2.02E+11 & 7.36E-04 & 1.58E+06 & 1.01E+10 & 1.56E-04 \\ \hline
 	\multicolumn{1}{|l|}{\textbf{7}} & 6.70E+07 & 9.66E+10 & 6.94E-04 & 5.57E+05 & 2.76E+09 & 2.02E-04 \\ \hline
