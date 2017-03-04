@@ -64,42 +64,44 @@
 
 
 \section{Question 1 - Security risk management assessment}
-\subsection{Purpose and scope}
-Purpose and scope
-Ensure availability and integrity of platoon maintenance, leaving, joining, creation and dissolving actions. Ensure compliance with IT statute and regulation.
+\subsection{Purpose \& scope}
+\label{subsec:purpose_scope}
+The purpose of this report is to ensure the availability, integrity and safety of all stored and transmitted information within the SARTRE road train system. This is to ensure the availability of the system to users, the safety of the vehicles on the road, and most importantly the confidentiality of user data. The sum of these ensures the compliance of the SARTRE project to IT statute and regulation. This will be ensured using a risk criteria evaluated against the ISO 27005  standard \cite{Iso2005-nn} for information security risk management. 
 
-Risk evaluation criteria
-Violation of IT statute and regulation
-Impact the availability of platoon-related services (maintenance, leaving and joining vehicles, platoon creation and dissolving)
-Impact on safety-providing systems
-Disclose user information
-Legal repercussions of the system
+The report's scope is restricted in it's scope to the entities owned by the SARTRE project, including vehicles \& server hardware, software, personnel, business processes and use of technologies. 
 
-Impact criteria
-How serious if the violation of IT statute/regulation due to the occurrence of the risk?
-How serious is the risk posed to the LV/FV/OV?
-How serious is the disclosure of customer information?
-Effects on integrity of the system
-Damage to reputation (currently at 60% trust)
-Breaches of legal requirements
-Loss of turnover / as a result of adverse effects by the occurrence of a risk?
+\subsection{Risk evaluation criteria}
+The risk evaluation criteria for this security assessment is defined by the following criteria, in order of decreasing importance.
 
-Risk acceptance criteria
-Threshold for violation of IT statute and regulation - low
-Threshold for unavailability of platooning for short period of time - medium, long time period - low
-Threshold for loss of turnover -
-Threshold for data inaccuracy
-\subsection{Definition of security risks}
-\subsubsection{Identification}
-\subsubsection{Analysis}
-\subsubsection{Evaluation}
-\subsubsection{Treatment}
+The violation of IT statute and regulation (leading to the disclosure of customer information to cyber-criminals) is the paramount objective of this security analysis, as this could lead to theft or other forms of digital crime against users. 
+
+Secondly, as the summary of policies for the SARTRE project \cite{Davila2013-cy} details that the liability of all vehicles in a road train falls on the lead vehicle, ensuring the safety of the system on the road is paramount to avoiding financial costs incurred due to accidents on the road. 
+
+The availability of the system would greatly impact the financial feasibility of the project, as revenue depend on the usage of the system by users. Therefore maintaining the availability of the system ensures the availability of revenue for a larger period of time, and therefore the financial viability of the project by mitigating the loss of turnover.
+
+Finally, given the number of major stakeholders in the SARTRE project (notably the European Union and major automotive manufacturer Volvo), the impact of risk occurrence on the reputation of the project may directly affect it's stakeholder's own reputation.
+
+\subsection{Impact criteria}
+\begin{itemize}
+	\item How serious if the violation of IT statute/regulation due to the occurrence of the risk?
+	\item How serious is the risk posed to the system's vehicles?
+	\item How exploitable is the disclosure of customer information?
+	\item What level of cost, time and effort would be required to recover from the adverse effects caused by the occurrence of the risk?
+\end{itemize}
+
+\subsection{Risk acceptance criteria}
+The following list details the relevant acceptance threshold for each 
+\begin{itemize}
+	\item Threshold for violation of IT statue and regulation - low
+	\item Threshold for unavailability of system to users - medium for short term, low for long term
+	\item Threshold for disclosure of customer information - low
+	\item Threshold for reduction in vehicle safety - low
+	\item Threshold for negative effects on project/stakeholder reputation - low
+\end{itemize}
 
 \subsection{Risk identification and treatment plan}
-
 \subsubsection{Threats}
-\begin{table}[]
-\begin{tabular}{|p{2cm}|p{2cm}|p{6cm}|p{3cm}|p{1.5cm}|}
+\begin{longtable}{|p{2cm}|p{1.5cm}|p{7cm}|p{3cm}|p{1cm}|}
 \hline
 \textbf{Type of threat origin} & \textbf{Origin of threat} & \textbf{Threat(s)} & \textbf{ISO Type} & \textbf{Origin} \\ \hline
 \multirow{3}{2cm}{\textbf{Human (insider)}} & LV/PLV driver & Tampering with hardware/software, theft of equipment: LVD uses equipment for personal gain/mischief. & Compromise of information & A, D \\ \cline{2-5} 
@@ -108,19 +110,17 @@ Threshold for data inaccuracy
 \multirow{2}{2cm}{\textbf{Human (outsider)}} & Computer criminal & Denial of Actions: DDoS on Back Office systemTampering with software: Subversion of Back Office, (erroneous data about lead vehicle positions)Position detection/Disclosure of client vehicle dataInterception of V2I communication leading to disclosure of payment or client informationSpoofing of V2V communication: endanger following vehicles & Unauthorised actions, Compromise of information & D \\ \cline{2-5} 
  & Terrorist & Remote spying, disclosure of position, theft of equipment through tampering of software/hardware or unauthorised use of equipment & Compromise of information & D \\ \hline
 \textbf{Vehicles} & LV/FV/ PLV/PFV (all vehicles) & Equipment failure/malfunction,Loss of power supply, all Physical damage types, all Natural events (eg climatic/seismic): resulting in damage to vehicle and/or other vehicles and environment & Physical damage, Loss of essential services, Natural events, dist. due to radiation & A, D, E \\ \hline
-\multirow{2}{2cm}{\textbf{Technical infrastructure}} & V2V, V2I communication & Failure of telecommunication equipment or loss of power supply: unable to coordinate platoon forming/joining between vehicles & Loss of essential service, Natural events, Physical damage & A, D, E \\ \cline{2-5} 
+\multirow{2}{2cm}{\textbf{Technical infrastructure}} & V2V, V2I communication & Failure of telecommunication equipment or loss of power supply: unable to coordinate platoon forming/joining between vehicles & Loss of essential service, Natural events, Physical damage & A, D, E \\ \cline{2-5}
  & Back office server & Failure of telecommunication equipment or loss of power supply: unable to coordinate platoon forming/joining between vehicles & Loss of essential service, Natural events, Physical damage & A, D, E \\ \hline
 \textbf{Environ - mental} & Climatic conditions & System is used in non-tested conditions, resulting in inadequate response to road/weather conditions and possible accidents & Natural events & E \\ \hline
-\end{tabular}
-\caption{My caption}
-\label{my-label}
-\end{table}
+\caption{Identified threats to the SARTRE system within the scope defined in \autoref{subsec:purpose_scope}}
+\label{tab:threats}
+\end{longtable}
+
+
 
 
 \subsubsection{Related assets}
-% Please add the following required packages to your document preamble:
-% \usepackage{multirow}
-
 \begin{longtable}{|p{2cm}|p{2cm}|p{5cm}|p{1cm}|p{2cm}|p{2.5cm}|}
 \hline
 \textbf{Type} & \textbf{Name} & \textbf{Description} & \textbf{Prim/ Supp} & \textbf{Owner} & \textbf{Related business process - relevance} \\ \hline
@@ -145,14 +145,12 @@ Threshold for data inaccuracy
  & \textbf{Hardware installation \& Maintenance technicians} & Responsible for hardware on all vehicles & S & Director & Business processes (platoon management) \\ \cline{2-6} 
  & \textbf{Back office admin} & Responsible for coordinating LV/PLV/FV/PFV to form platoons & P & Director & All platoon-related business processes \\ \hline
 \textbf{Location} & \textbf{Meeting point} & Arranged location for platoon operations, designated by BOA & P & BOA & Platoon creation \\ \hline
-\caption{My caption}
-\label{my-label}
+\caption{Assets related to threats described in \autoref{tab:threats}.}
+\label{tab:assets}
 \end{longtable}
 
 \subsubsection{Incident scenarios}
-\begin{table}[]
-\centering
-\begin{tabular}{|p{4cm}|p{4cm}|p{3cm}|p{3cm}|}
+\begin{longtable}{|p{4cm}|p{5cm}|p{3cm}|p{3cm}|}
 \hline
 \textbf{Incident scenario} & \textbf{Consequences} & \textbf{Business impact} & \textbf{Related assets} \\ \hline
 \textbf{IS1:} misconfiguration of vehicle control/actuators due to insufficient testing in extreme conditions leading to improper positioning in platoon, reporting incorrect position to BO & Decrease in fuel efficiency, danger of collision, incorrect location reporting results in inability to find appropriate platoons. & Low (fuel efficiency) to Very High (system failure leading to collision) & LV, PLV, FV, PFV, maintain platoon process, hardware technicians \\ \hline
@@ -163,21 +161,19 @@ IS5: data input error by BOA due to software or lack of experience & Inability t
 \textbf{IS6:} loss of GSM/GPS signal or map information & Inability to coordinate vehicles, resulting in loss of income due to inactivity & Medium (short term) - High (long term) & LV, PLV, FV, PFV, V2I communication, back office \\ \hline
 \textbf{IS7:} power failure in FV due to system misconfiguration or equipment failure & Inability to stay in patrol, potentially urgent driver attention needed to prevent accident & High (bad publicity, loss of income) & FV, PFV \\ \hline
 \textbf{IS8:} unauthorised access of BO server via hacking / spoofing vehicles & Compromise of information stored on the BO server (vehicle position/information, payment information, customer information) & High (Violation of IT statute/regulation, loss of income) & back office server \\ \hline
-\end{tabular}%
 \caption{Principal incident scenarios for a commercially viable implementation of SARTRE}
 \label{tab:incident_scenarios}
-\end{table}
+\end{longtable}%
 
-\clearpage
 \subsubsection{Risk treatment plan}
 
 \paragraph{IS8: BO server security against unauthorised access \newline} 
 
-As details of the BO server’s security are sparse, but the server manages business processes pertaining to user and payment information, ensuring the robustness of the BO server to attacks is paramount. The use of an off-the-shelf server product can provide a certain degree of security if properly installed, tested and maintained. Additional precautions should be taken to ensure vehicle to BO communication is not spoofed, as this could cause the release of charging related information to a hacker. As stated in the treatment plan for IS2, the GSM protocol relied on for security has been demonstrated broken using relatively cheap and accessible equipment, and therefore an additional layer of strong encryption should be used to ensure the confidentiality, integrity and nonrepudiation of communicated messages. This could be implemented using an AES based public key encryption system, which could use off-the-shelf solutions at a low implementation cost. Additional care should be used for testing and validation of the system, given the potential impact of the release of customer information and payments systems for malicious purposes. 
+As details of the BO server’s security are sparse, but the server manages business processes pertaining to user and payment information, ensuring the robustness of the BO server to attacks is paramount. This potential fallout from this risk occurrence could require extensive re-installation of the servers after hacking (to ensure safety of the new system), at a large cost in addition to the loss of turnover due to system unavailability. Furthermore, the failure of the system may tarnish the project's reputation, thereby affecting it's stakeholder's reputation. The use of an off-the-shelf server product can provide a certain degree of security if properly installed, tested and maintained. Additional precautions should be taken to ensure vehicle to BO communication is not spoofed, as this could cause the release of charging related information to a hacker. As stated in the treatment plan for IS2, the GSM protocol relied on for security has been demonstrated broken using relatively cheap and accessible equipment, and therefore an additional layer of strong encryption should be used to ensure the confidentiality, integrity and non-repudiation of communicated messages. This could be implemented using an AES based public key encryption system, which could use off-the-shelf solutions at a low implementation cost. Additional care should be used for testing and validation of the system, given the potential impact of the release of customer information and payments systems for malicious purposes. 
 
 \paragraph{IS4: Software failure of BO server due to hacking or software failure \newline} 
 
-Software failure of the back end server would cause the inability of the BOA to coordinate platoon operations, thereby reducing the occurrence of revenue-generating actions. Reducing the probability and duration of BO server downtime is therefore crucial to the effectivity of the system. This would require ensuring the adequacy of the implementation and configuration of the server, which can be achieved by extensive code review and testing of the server. Verifying the configuration of the server to existing industry standards could validate the effectiveness of the current server against the server standard required to mitigate this risk: viable standards include the ISO 27002 \citet{Iso2005-nn} or NIST Guide to General Server Security \citet{noauthor_undated-kw}. Additional care should be undertaken to defend against DDoS attacks: various defence mechanisms which could be implemented with a financial cost and delay in the product development can be found in \citet{Zargar2013-xx}.
+Software failure of the back end server would cause the inability of the BOA to coordinate platoon operations, thereby reducing the occurrence of revenue-generating actions. Reducing the probability and duration of BO server downtime is therefore crucial to the effectiveness of the system, in addition to minimising loss of turnover. This would require ensuring the adequacy of the implementation and configuration of the server, which can be achieved by extensive code review and testing of the server. Verifying the configuration of the server to existing industry standards could validate the effectiveness of the current server against the server standard required to mitigate this risk: viable standards include the ISO 27002 \citet{Iso2005-nn} or NIST Guide to General Server Security \citet{noauthor_undated-kw}. Additional care should be undertaken to defend against DDoS attacks: various defence mechanisms which could be implemented with a financial cost and delay in the product development can be found in \citet{Zargar2013-xx}.
 
 \paragraph{IS2: Interception \& abuse of V2I/V2V communication via GSM \newline}
 \label{par:IS2}
@@ -196,60 +192,33 @@ Furthermore, the presence of V2I or V2V communication could provide hackers a wi
 \section{Question 2 - Bulk guessing tool}
 
 \subsubsection{Bulk guessing}
-Bulk guessing, as described by \citet{Florencio2007-yp}, is the action of attempting of accessing an authentication-protected account on a system by attempting to guess the password for a large number of accounts, using a large number of guess passwords (which are either randomly generated or randomly sampled from a dictionary). As password policies set in place by institutions aim to deter attackers from guessing a single password, the act of simultaneously breaking millions of accounts can yield a successful guesses on a few different accounts. The tool designed for this project aims to demonstrates the expected success rate of a bulk guessing algorithm using an attack dictionary, which is evaluated against a set of statistically common passwords from \citet{Cubrilovic2009-wu}.
+Bulk guessing, as described by \citet{Florencio2007-yp}, is the action of attempting of accessing an authentication-protected account on a system by guessing the password for a large number of accounts, using a large number of guess passwords (which are either randomly generated or randomly sampled from a dictionary). Each guess utilises a separate guess password and victim, each of which are randomly selected from relevant attack dictionaries. As password policies set in place by institutions aim to deter attackers from guessing a single password, the act of attacking millions of accounts can yield a number successful guesses on a few different accounts. The tool designed for this project aims to demonstrates the expected success rate of a bulk guessing algorithm using an attack dictionary, which is evaluated against a set of statistically common passwords from \citet{Cubrilovic2009-wu} (also known as the rockyou set of passwords).
 
 \subsection{Design \& Implementation}
-The tool is implemented in python 2.7.6, and can be ran using the command \lstinline{python main.py M N1 N2} where M is the number of guesses, N1 is the minimum password length and N2 is the exact password length. This will print an output detailing the number of correct guesses for each authentication method. Additional options can be passed to the tool: \lstinline{-its n} runs the program n times, and \lstinline{--save_file} saves the results of each run to a datafile.
+The tool is implemented in python 2.7.6, and can be ran using the command \lstinline{python main.py M N1 N2} where M is the number of guesses, N1 is the minimum password length and N2 is the exact password length. This will print an output detailing the number of correct guesses for each authentication method. Additional options can be passed to the tool: \lstinline{-its n} runs the program n times, and \lstinline{--save_file} saves the results of each run to a specified file in the format (number of full matches, number of partial matches) for M attempts.
 
 
-\subsubsection{Data handling}
-Two classes are used to handle data sources. AttackPasswords is used to retrieve the passwords used in bulk guessing, and pre-filters them according to arguments N1 and N2. An error check is put into place to ensure the lists of passwords/passcodes are not empty, as this would be an unusable attack vector for bulk guessing. The class also implements $pick\_password\_passcode()$ which returns a (password, passcode) tuple randomly selected from the list of 500 passwords.
+\subsubsection{Code description and optimisation}
+Two classes are used to handle data sources. AttackPasswords is used to retrieve the passwords used in bulk guessing, and pre-filters them according to arguments N1 and N2. An error check is put into place to ensure the lists of policy-compliant passwords/passcodes are not empty, as this would be an unusable attack vector for bulk guessing given our attack dictionaries. The class also implements $pick\_password\_passcode()$ which returns a (password, passcode) tuple randomly selected from the list of 500 passwords.
 
-The distribution of common passwords is handled by the VictimPasswords class, which conducts some optimisation to improve the performance of the attack at the cost of memory usage. This is achieved by retrieving each password and frequency, and appending it repeatedly to a large list in proportion to it's frequency. This allows us to sample the distribution of passwords according to their weight, but by using a $O(1)$ complexity by generating a random float in $\{0,1\}$ and retrieving the value at that index of the array. This accrues a significant memory usage, as a large number of duplicate passwords are stored, but significantly reduces the complexity of the algorithm which would otherwise require $O(n)$ to randomly select an adequate password. The memory usage was later minimised using a de-facto pointer, where each value is wrapped in an object of class $Value$, and the same instance of the object is stored at multiple indices of the array. As they point to the same value, this avoids duplicating the value in memory, at the cost of memory usage to define the class instance and pointer.
+The distribution of common passwords is handled by the VictimPasswords class, which conducts some optimisation to improve the performance of the attack at the cost of memory usage. This is achieved by retrieving each password and frequency, and appending it repeatedly to a large list in proportion to it's frequency. This allows us to sample the distribution of passwords according to their weight, but by using a $O(1)$ complexity by generating a random float in $\{0,1\}$ and retrieving the value at that index of the array. This accrues a significant memory usage (as a large number of duplicate passwords are stored) but significantly reduces the complexity of the algorithm which would otherwise require $O(n)$ to randomly select an adequate password. The memory usage was later minimised using a de-facto pointer, where each value is wrapped in an object of class $Value$, and the same instance of the object is stored at multiple indices of the array. As they point to the same value, this avoids duplicating the value in memory, at the cost of memory usage to define the class instance and pointer.
 
 \subsubsection{Password comparison}
-Two methods implement the password authentication: $match(victim, guess)$ randomly picks 3 different integers in the range of the victim's password, and compares the characters at those indices with the guess password. This includes error catching for the cases where the victim selects a password larger than the policy but the bulk guessing randomly picks a shorter one, which could result in an IndexError, or for a blank password (which has no indices). A second method, $matchfull(password, guess)$ provides a simple string equality check to validate complete passwords.
+Two methods implement the password authentication for partial or pull authentication: $match(victim, guess)$ randomly picks 3 different integers in the range of the victim's password, and compares the characters at those indices with the guess password. This includes error catching for the cases where the victim selects a password larger than the policy but the bulk guessing randomly picks a shorter one, which could result in an IndexError, or for a blank password (which has no indices). A second method, $matchfull(password, guess)$ provides a simple string equality check to validate complete passwords.
  
 
 \subsection{Results \& Analysis}
 \subsubsection{Comparison of authentication methods}
 \label{subsec:authentication_methods}
-Our implementation was ran 150 times for $n1, n2 \in \{6,7,8\}$, resulting in data with extremely precise confidence intervals as seen in \autoref{fig:approach_comparison}. The results demonstrate that for all combinations of password and passcode length, the second authentication system is more vulnerable to bulk guessing than the first. This is found to be statistically significant across all password/passcode combinations, as visible in \autoref{app:significant_stats} where a two-tailed Mann-Whitney test was used to show that $p<.01$ between each algorithm for all equivalent password/passcode policies. Partial password authentication is therefore between 1.91 and 3.5 times more likely to be randomly guessed, depending on the password/passcode policies chosen (minimum ratio at password/passcode of 8/7, and maximum ratio at 6/6).
+Our implementation was ran 150 times for $n1, n2 \in \{6,7,8\}, M = 50 * 10^6$, resulting in data with extremely precise confidence intervals as seen in \autoref{fig:approach_comparison} (in \autoref{app:figures}). The results demonstrate that for all combinations of password and passcode length, the second authentication system is more vulnerable to bulk guessing than the first. This is found to be statistically significant across all password/passcode combinations, as visible in \autoref{tab:significance} (in \autoref{app:significant_stats}), where a two-tailed Mann-Whitney test was used to show that $p<.01$ between each algorithm for all equivalent password/passcode policies. Partial password authentication is therefore between 1.91 and 3.5 times more likely to be randomly guessed, depending on the password/passcode policies chosen (minimum ratio at password/passcode of 8/7, and maximum ratio at 6/6) and the collision rate of passwords within the attack dictionaries.
 
 These observations are most likely due to two effects. Firstly, we should state that every successful password guess in the full password system will be a successful guess in system B (with partial password matching), as the indices compared in the partial password system form a subset of the indices compared to the full password. Secondly, full passwords require the victim and attacker passwords to have the same length; this is not always the case, as the policy sets only a minimum bound on the password length, leading to mis-matched password lengths. This would cause the guess to fail for a full password, but not a partial password (assuming the characters stated indices matched). Finally, there is a significant number of password collisions at various indices which allow a larger number of guess passwords to correctly guess a victim's password. 
 
-This was verified using a brute force script (see \autoref{app:bruteforce}, which evaluated every combination of guess and victim password using either a full match or every combination of 3 indices within the password's length. This resulted in the data seen in \autoref{fig:collision_prob}: as we can see, the index-based authentication system (Syfull) results in a significantly higher probability of guessing a password in a bulk attack. Whilst our dataset may exaggerate this effect, it is reasonable to assume that whilst a single password can only be fully guessed by a copy of itself, it could be partially guessed by a larger number of passwords which happen to match it's characters in stated indices, and it is therefore more likely that one of these passwords will be selected at random as there are a larger number of them. 
-\begin{figure}
-	\begin{tikzpicture}
-	    \begin{axis}[
-	 width  = 0.85*\textwidth,
-	 height = 8cm,
-	 major x tick style = transparent,
-	 ybar=2*\pgflinewidth,
-	 bar width=14pt,
-	 ymajorgrids = true,
-	 ylabel = {Probability of password collisions},
-	 symbolic x coords={6, 7, 8},
-	 xtick = data,
-	 xlabel = Password length,
-	 enlarge x limits=0.25,
-	 ymin=0,
-	 legend cell align=left,
-	    ]
-	 \addplot[style={blue,fill=blue,mark=none}]
-	    coordinates {(6, 7.36E-04) (7,6.94E-04) (8,1.05E-03)};
+This was verified using a brute force script (see \autoref{app:bruteforce}), which evaluated every combination of guess and victim password using either a full match or every combination of 3 indices within the password's length. This resulted in the data seen in \autoref{fig:collision_prob} (in \autoref{app:figures}): as we can see, the index-based authentication system (Syfull) results in a significantly higher probability of guessing a password in a bulk attack. Whilst our dataset may exaggerate this effect, it is reasonable to assume that whilst a single password can only be fully guessed by a copy of itself, it could be partially guessed by a larger number of passwords which happen to match it's characters in stated indices, and it is therefore more likely that one of these passwords will be selected at random as there are a larger number of them. 
 
-	 \addplot[style={red,fill=red,mark=none}]
-	     coordinates {(6,1.56E-04) (7,2.02E-04) (8,4.50E-04)};
-	 \legend{full, partial}
-	    \end{axis}
-	\end{tikzpicture}
-	\caption{Probability of guessing a password using character sampled authentication (Syfull) and full password authentication (Sypart).}
-	\label{fig:collision_prob}
-\end{figure}
 
 \subsubsection{Effects of password policy}
-The password policies have similar effects on both algorithms: increasing the passcode length decreases the number of successful guesses, whilst increasing the password length increases the number of successful guesses. The latter observation is at first surprising: as a larger password/passcode length would allow for a larger number of permutations, one would expect the number of successful guesses to decrease as the password's length increases due to a decreased probability. As this effect is observed for both forms of authentication, we can deduce it is not caused by the the difference in these systems (i.e: using 3 characters instead of a full password to establish validity). Further analysis of the data show that the number of valid passwords in our dataset decreases as we increase the minimum password length; for both our 500 attack passwords and the RockYou password distribution \cite{Cubrilovic2009-wu}. As visible in \autoref{fig:passwords_length}, this leads to a smaller number of possible guess password/account password combinations ($4 \times 10^6 $ for  passwords  of length $<= 8$, $9 \times 10^7$ for passwords of length $<= 6$). This results in a larger number of correct guesses for a fixed sample size, causing the effect seen in \autoref{fig:approach_comparison}. The effect does not occur for passcodes however, as the number of passcodes in \cite{Cubrilovic2009-wu} for each policy length remains roughly constant (89,595 for n=6 to 55,803 for n=8). 
+The password policies have similar effects on both algorithms: increasing the passcode length decreases the number of successful guesses, whilst increasing the password length increases the number of successful guesses. The latter observation is at first surprising: as a larger password/passcode length would allow for a larger number of permutations, one would expect the number of successful guesses to decrease as the password's length increases due to a decreased probability. As this effect is observed for both forms of authentication, we can deduce it is not caused by the the difference in these systems (i.e: using 3 characters instead of a full password to establish validity). Further analysis of the data show that the number of valid passwords in our dataset decreases as we increase the minimum password length; for both our 500 attack passwords and the RockYou password distribution \cite{Cubrilovic2009-wu}. As visible in \autoref{fig:passwords_length} (in \autoref{app:figures}), this leads to a smaller number of possible guess password/account password combinations ($4 \times 10^6 $ for  passwords  of length $<= 8$, $9 \times 10^7$ for passwords of length $<= 6$). This results in a larger number of correct guesses for a fixed sample size, causing the effect seen in \autoref{fig:approach_comparison} (in \autoref{app:figures}). The effect does not occur for passcodes however, as the number of passcodes in \cite{Cubrilovic2009-wu} for each policy length remains roughly constant (89,595 for n=6 to 55,803 for n=8). 
 
 We could therefore state that increasing the minimum password length policy can cause user accounts which utilise dictionary passwords to be more vulnerable to bulk guessing, as the the set of possible passwords is reduced as the minimum size increases.
 
@@ -266,112 +235,6 @@ We could therefore state that increasing the minimum password length policy can 
 %http://groups.inf.ed.ac.uk/security/passwords/pps.pdf
 % http://translate.google.pl/translate?sl=pl&tl=en&js=n&prev=_t&hl=pl&ie=UTF-8&layout=2&eotf=1&u=http://wampir.mroczna-zaloga.org/archives/235-o-haslach-maskowanych.html
 
-\begin{figure}
-	\begin{tikzpicture}
-	    \begin{axis}[
-	    	height=10cm,
-	    	width=10cm,
-	    	xtick={6,7,8},
-	 xlabel=Password length,
-	 ylabel=Number of successful guesses,
-	 legend pos=north west
-	    ]
-	    \addplot[
-	 mark=x,
-	 blue,
-	 error bars/.cd, y dir=both, y explicit,
-	    ] plot coordinates {
-	 (6,9.25)   -=(0,0.033) += (0,0.438)
-	 (7,12.37)  -=(0,0.034) += (0,0.450)
-	 (8,26.68)  -=(0,0.058) += (0,0.759)
-	    };
-	    \addlegendentry{full, passcode=6}
-
-	    \addplot[
-	 mark=x,
-	 red,
-	 error bars/.cd, y dir=both, y explicit,
-	    ] plot coordinates {
-	 (6,7.62)  -= (0,0.030) += (0,0.398)
-	 (7,10.60) -= (0,0.030) += (0,0.397)
-	 (8,23.19) -= (0,0.049) += (0,0.645)
-	    };
-	    \addlegendentry{full, pass=7}    
-
-	    \addplot[
-	 mark=x,
-	 error bars/.cd, y dir=both, y explicit,
-	    ] plot coordinates {
-	 (6,5.23)  -= (0,0.025) += (0,0.329)
-	 (7,6.84)  -= (0,0.024) += (0,0.319)
-	 (8,15.09) -= (0,0.039) += (0,0.504)
-	    };
-	    \addlegendentry{full, pass=8}
-
-	    \addplot[
-	 mark=x,
-	 blue,
-	 dashed,
-	 error bars/.cd, y dir=both, y explicit,
-	    ] plot coordinates {
-	 (6,32.68)  -=(0,0.053) += (0,0.695)
-	 (7,32.85)  -=(0,0.058) += (0,0.753)
-	 (8,51.64)  -=(0,0.078) += (0,1.026)
-	    };
-	    \addlegendentry{partial, pass=6}
-
-	    \addplot[
-	 mark=x,
-	 red,
-	 dashed,
-	 error bars/.cd, y dir=both, y explicit,
-	    ] plot coordinates {
-	 (6,27.61) -= (0,0.053) += (0,0.690)
-	 (7,27.39) -= (0,0.057) += (0,0.749)
-	 (8,44.33) -= (0,0.070) += (0,0.921)
-	    };
-	    \addlegendentry{partial, pass=7}    
-
-	    \addplot[
-	 mark=x,
-	 dashed,
-	 error bars/.cd, y dir=both, y explicit,
-	    ] plot coordinates {
-	 (6,18.38)  -= (0,0.043) += (0,0.559)
-	 (7,17.93)  -= (0,0.046) += (0,0.599)
-	 (8,29.40)  -= (0,0.049) += (0,0.645)
-	    };
-	    \addlegendentry{partial, pass=8}
-
-	    \end{axis}
-	\end{tikzpicture}
-	\caption{Mean number of successful guesses from ($50 \times 10^6 $) attempts using varying passcode length}
-	\label{fig:approach_comparison}
-\end{figure}
-
-\begin{figure}
-	\begin{tikzpicture}
-	    \begin{axis}[ybar, xtick = {6,7,8}, xlabel = Minimum password length, ylabel = Number of valid account passwords in \cite{Cubrilovic2009-wu}]
-		\addplot table [
-		 col sep=comma,
-		 x=pass_size,
-		 y=num_pass,
-		    ] {data/password_count.csv};
-	    \end{axis}	    
-	    \begin{axis}[
-	    	axis y line*=right,
-    		axis x line=none, 
-    		ylabel = Number of valid attack passwords out of 500]
-		\addplot table [
-		 col sep=comma,
-		 x=pass_size,
-		 y=guess_pass,
-		    ] {data/password_count.csv};
-	    \end{axis}
-	\end{tikzpicture}
-	\caption{Count of valid passwords in \cite{Cubrilovic2009-wu} for each password policy}
-	\label{fig:passwords_length}
-\end{figure}
 
 
 \subsection{Application of authentication systems}
@@ -408,13 +271,149 @@ Finally, as \citet{Aspinall2013-sh} has demonstrated the significance of recordi
 \clearpage
 
 \begin{appendices}
+	\section{Figures}\label{app:figures}
+	\begin{figure}[!htb]
+		\begin{tikzpicture}
+		    \begin{axis}[
+		    	height=10cm,
+		    	width=10cm,
+		    	xtick={6,7,8},
+		 xlabel=Password length,
+		 ylabel=Number of successful guesses,
+		 legend pos=north west
+		    ]
+		    \addplot[
+		 mark=x,
+		 blue,
+		 error bars/.cd, y dir=both, y explicit,
+		    ] plot coordinates {
+		 (6,9.25)   -=(0,0.033) += (0,0.438)
+		 (7,12.37)  -=(0,0.034) += (0,0.450)
+		 (8,26.68)  -=(0,0.058) += (0,0.759)
+		    };
+		    \addlegendentry{full, passcode=6}
+
+		    \addplot[
+		 mark=x,
+		 red,
+		 error bars/.cd, y dir=both, y explicit,
+		    ] plot coordinates {
+		 (6,7.62)  -= (0,0.030) += (0,0.398)
+		 (7,10.60) -= (0,0.030) += (0,0.397)
+		 (8,23.19) -= (0,0.049) += (0,0.645)
+		    };
+		    \addlegendentry{full, pass=7}    
+
+		    \addplot[
+		 mark=x,
+		 error bars/.cd, y dir=both, y explicit,
+		    ] plot coordinates {
+		 (6,5.23)  -= (0,0.025) += (0,0.329)
+		 (7,6.84)  -= (0,0.024) += (0,0.319)
+		 (8,15.09) -= (0,0.039) += (0,0.504)
+		    };
+		    \addlegendentry{full, pass=8}
+
+		    \addplot[
+		 mark=x,
+		 blue,
+		 dashed,
+		 error bars/.cd, y dir=both, y explicit,
+		    ] plot coordinates {
+		 (6,32.68)  -=(0,0.053) += (0,0.695)
+		 (7,32.85)  -=(0,0.058) += (0,0.753)
+		 (8,51.64)  -=(0,0.078) += (0,1.026)
+		    };
+		    \addlegendentry{partial, pass=6}
+
+		    \addplot[
+		 mark=x,
+		 red,
+		 dashed,
+		 error bars/.cd, y dir=both, y explicit,
+		    ] plot coordinates {
+		 (6,27.61) -= (0,0.053) += (0,0.690)
+		 (7,27.39) -= (0,0.057) += (0,0.749)
+		 (8,44.33) -= (0,0.070) += (0,0.921)
+		    };
+		    \addlegendentry{partial, pass=7}    
+
+		    \addplot[
+		 mark=x,
+		 dashed,
+		 error bars/.cd, y dir=both, y explicit,
+		    ] plot coordinates {
+		 (6,18.38)  -= (0,0.043) += (0,0.559)
+		 (7,17.93)  -= (0,0.046) += (0,0.599)
+		 (8,29.40)  -= (0,0.049) += (0,0.645)
+		    };
+		    \addlegendentry{partial, pass=8}
+
+		    \end{axis}
+		\end{tikzpicture}
+		\caption{Mean number of successful guesses from ($50 \times 10^6 $) attempts using varying passcode length}
+		\label{fig:approach_comparison}
+	\end{figure}
+	\begin{figure}[!htb]
+		\begin{tikzpicture}
+		    \begin{axis}[
+		 width  = 0.85*\textwidth,
+		 height = 8cm,
+		 major x tick style = transparent,
+		 ybar=2*\pgflinewidth,
+		 bar width=14pt,
+		 ymajorgrids = true,
+		 ylabel = {Probability of password collisions},
+		 symbolic x coords={6, 7, 8},
+		 xtick = data,
+		 xlabel = Password length,
+		 enlarge x limits=0.25,
+		 ymin=0,
+		 legend cell align=left,
+		    ]
+		 \addplot[style={blue,fill=blue,mark=none}]
+		    coordinates {(6, 7.36E-04) (7,6.94E-04) (8,1.05E-03)};
+
+		 \addplot[style={red,fill=red,mark=none}]
+		     coordinates {(6,1.56E-04) (7,2.02E-04) (8,4.50E-04)};
+		 \legend{full, partial}
+		    \end{axis}
+		\end{tikzpicture}
+		\caption{Probability of guessing a password using character sampled authentication (Syfull) and full password authentication (Sypart).}
+		\label{fig:collision_prob}
+	\end{figure}
+	\begin{figure}[!htb]
+		\begin{tikzpicture}
+		    \begin{axis}[ybar, xtick = {6,7,8}, xlabel = Minimum password length, ylabel = Number of valid account passwords in \cite{Cubrilovic2009-wu}]
+			\addplot table [
+			 col sep=comma,
+			 x=pass_size,
+			 y=num_pass,
+			    ] {data/password_count.csv};
+		    \end{axis}	    
+		    \begin{axis}[
+		    	axis y line*=right,
+	    		axis x line=none, 
+	    		ylabel = Number of valid attack passwords out of 500]
+			\addplot table [
+			 col sep=comma,
+			 x=pass_size,
+			 y=guess_pass,
+			    ] {data/password_count.csv};
+		    \end{axis}
+		\end{tikzpicture}
+		\caption{Count of valid passwords in \cite{Cubrilovic2009-wu} for each password policy}
+		\label{fig:passwords_length}
+	\end{figure}
+	\clearpage
+
 	\section{Main.py}\label{app:main}
 	\lstinputlisting[language=Python]{../main.py}	
 	\clearpage
 
 	\section{Statistics}\label{app:extra_stats}
 	\subsection{Compiled statistics}
-	\begin{table}[h]
+	\begin{table}[!htb]
 		\centering
 		\begin{tabular}{|l|l|l|l|l|l|l|l|}
 		\hline
@@ -455,7 +454,7 @@ Finally, as \citet{Aspinall2013-sh} has demonstrated the significance of recordi
   	\subsection{Data significance}
   	\label{app:significant_stats}
   	The following table details the results of statistical tests between each authentication system using equivalent password/passcode length policies.
-  	\begin{table}[h]
+  	\begin{table}[!htb]
 	\centering
 	\begin{tabular}{|l|l|l|l|l|}
 	\hline
@@ -473,10 +472,10 @@ Finally, as \citet{Aspinall2013-sh} has demonstrated the significance of recordi
 	\caption{Statistical tests between authentication systems for equivalent password/passcode length}
 	\label{tab:significance}
 	\end{table}
-
+	\clearpage
 	\subsection{Sample of raw data}
 	\label{app:raw_data}
-	\begin{longtable}{|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+	\begin{longtable}{|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|}
 	\hline
 	\multicolumn{18}{|l|}{\textbf{Password/Passcode policy in format N1/N2, full $\rightarrow$ full, part $\rightarrow$ partial}} \\ \hline
 	\multicolumn{2}{|l|}{\textbf{6,6}} & \multicolumn{2}{l|}{\textbf{6,7}} & \multicolumn{2}{l|}{\textbf{6,8}} & \multicolumn{2}{l|}{\textbf{7,6}} & \multicolumn{2}{l|}{\textbf{7,7}} & \multicolumn{2}{l|}{\textbf{7,8}} & \multicolumn{2}{l|}{\textbf{8,6}} & \multicolumn{2}{l|}{\textbf{8,7}} & \multicolumn{2}{l|}{\textbf{8,8}} \\ \hline
@@ -501,7 +500,7 @@ Finally, as \citet{Aspinall2013-sh} has demonstrated the significance of recordi
 	8 & 30 & 5 & 21 & 3 & 13 & 11 & 31 & 11 & 24 & 8 & 17 & 21 & 44 & 26 & 50 & 12 & 22 \\ \hline
 	9 & 33 & 3 & 23 & 3 & 14 & 9 & 28 & 13 & 23 & 12 & 23 & 23 & 44 & 18 & 40 & 19 & 36 \\ \hline
 	... & ... & ...& ... & ...& ... & ...& ... & ... & ... & ...& ... & ... & ... & ... & ... & ... & ... \\ \hline
-		\caption{Raw data, displaying the number of succesful matches in each authentication using 50 million guesses of attack \& victim password/passcodes. 150 data points exist in each password / passcode policy and authentication system, the full table can be found in data/raw\_data.csv}
+		\caption{Raw data, displaying the number of successful matches in each authentication using 50 million guesses of attack \& victim password/passcodes. 150 data points exist in each password / passcode policy and authentication system, the full table can be found in data/raw\_data.csv}
 	\label{tab:raw_data}
 	\end{longtable}
 
@@ -509,7 +508,6 @@ Finally, as \citet{Aspinall2013-sh} has demonstrated the significance of recordi
 
 	\section{BruteForce.py}\label{app:bruteforce}
 	\lstinputlisting[language=Python]{../bruteforce.py}
-	\clearpage
 
 	\section{Brute force results}\label{app:bruteforceresults}
 	\begin{table}[h]
@@ -522,7 +520,7 @@ Finally, as \citet{Aspinall2013-sh} has demonstrated the significance of recordi
 	\multicolumn{1}{|l|}{\textbf{7}} & 6.70E+07 & 9.66E+10 & 6.94E-04 & 5.57E+05 & 2.76E+09 & 2.02E-04 \\ \hline
 	\multicolumn{1}{|l|}{\textbf{8}} & 3.77E+07 & 3.57E+10 & 1.05E-03 & 2.87E+05 & 6.37E+08 & 4.50E-04 \\ \hline
 	\end{tabular}
-	\caption{Number of succesful matches for every permutation of attack/victim passwords, weighed in function of the number of users using that password.}
+	\caption{Number of successful matches for every permutation of attack/victim passwords, weighed in function of the number of users using that password.}
 	\label{tab:brute_force}
 	\end{table}
 
