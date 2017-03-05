@@ -1,7 +1,7 @@
 
 \documentclass[british,11pt,a4paper]{article}
 \usepackage[british]{babel}
-\usepackage[margin=1in, bottom=0.75in, top=0.75in, footskip=0.25in]{geometry}
+\usepackage[margin=0.75in, bottom=0.75in, top=0.75in, footskip=0.25in]{geometry}
 \usepackage[titletoc]{appendix}
 \usepackage{fancyhdr}
 \usepackage{mathtools}
@@ -24,7 +24,6 @@
 \usepackage{titlesec}
 
 \setcounter{secnumdepth}{4}
-
 
 \usepgfplotslibrary{statistics}
 
@@ -50,6 +49,9 @@
   breaklines=true,
   basicstyle=\ttfamily\footnotesize
   }
+\titlespacing{\section}{1em}{\parskip}{-\parskip}
+\titlespacing{\subsection}{1.5em}{\parskip}{-\parskip}
+% \titlespacing{\subsubsection}{1em}{\parskip}{-\parskip}
 
 \usepackage[nottoc]{tocbibind}
 \usepackage{csvsimple}
@@ -62,13 +64,12 @@
 \tableofcontents
 \clearpage
 
-
 \section{Question 1 - Security risk management assessment}
 \subsection{Purpose \& scope}
 \label{subsec:purpose_scope}
 The purpose of this report is to ensure the availability, integrity and safety of all stored and transmitted information within the SARTRE road train system. This is to ensure the availability of the system to users, the safety of the vehicles on the road, and most importantly the confidentiality of user data. The sum of these ensures the compliance of the SARTRE project to IT statute and regulation. This will be ensured using a risk criteria evaluated against the ISO 27005  standard \cite{Iso2005-nn} for information security risk management. 
 
-The report's scope is restricted in it's scope to the entities owned by the SARTRE project, including vehicles \& server hardware, software, personnel, business processes and use of technologies. 
+The report's scope is restricted to the entities owned by an implementation of the SARTRE project, including vehicles \& server hardware, software, personnel, business processes and use of technologies. 
 
 \subsection{Risk evaluation criteria}
 The risk evaluation criteria for this security assessment is defined by the following criteria, in order of decreasing importance.
@@ -83,6 +84,7 @@ Finally, given the number of major stakeholders in the SARTRE project (notably t
 
 \subsection{Impact criteria}
 \begin{itemize}
+	\setlength\itemsep{-0.3em}
 	\item How serious if the violation of IT statute/regulation due to the occurrence of the risk?
 	\item How serious is the risk posed to the system's vehicles?
 	\item How exploitable is the disclosure of customer information?
@@ -90,8 +92,8 @@ Finally, given the number of major stakeholders in the SARTRE project (notably t
 \end{itemize}
 
 \subsection{Risk acceptance criteria}
-The following list details the relevant acceptance threshold for each 
 \begin{itemize}
+	\setlength\itemsep{-0.3em}
 	\item Threshold for violation of IT statue and regulation - low
 	\item Threshold for unavailability of system to users - medium for short term, low for long term
 	\item Threshold for disclosure of customer information - low
@@ -99,9 +101,11 @@ The following list details the relevant acceptance threshold for each
 	\item Threshold for negative effects on project/stakeholder reputation - low
 \end{itemize}
 
+\clearpage
 \subsection{Risk identification and treatment plan}
+The risks of this report were identified and treated in accordance to \citet{ISO_27005}; this methodology provides an industry standard level of security, thoroughly evaluating the origin, potential affect and tools for risk mitigation available within a defined scope of the project.
 \subsubsection{Threats}
-\begin{longtable}{|p{2cm}|p{1.5cm}|p{7cm}|p{3cm}|p{1cm}|}
+\begin{longtable}{|p{2cm}|p{1.5cm}|p{8cm}|p{3cm}|p{1cm}|}
 \hline
 \textbf{Type of threat origin} & \textbf{Origin of threat} & \textbf{Threat(s)} & \textbf{ISO Type} & \textbf{Origin} \\ \hline
 \multirow{3}{2cm}{\textbf{Human (insider)}} & LV/PLV driver & Tampering with hardware/software, theft of equipment: LVD uses equipment for personal gain/mischief. & Compromise of information & A, D \\ \cline{2-5} 
@@ -113,10 +117,10 @@ The following list details the relevant acceptance threshold for each
 \multirow{2}{2cm}{\textbf{Technical infrastructure}} & V2V, V2I communication & Failure of telecommunication equipment or loss of power supply: unable to coordinate platoon forming/joining between vehicles & Loss of essential service, Natural events, Physical damage & A, D, E \\ \cline{2-5}
  & Back office server & Failure of telecommunication equipment or loss of power supply: unable to coordinate platoon forming/joining between vehicles & Loss of essential service, Natural events, Physical damage & A, D, E \\ \hline
 \textbf{Environ - mental} & Climatic conditions & System is used in non-tested conditions, resulting in inadequate response to road/weather conditions and possible accidents & Natural events & E \\ \hline
-\caption{Identified threats to the SARTRE system within the scope defined in \autoref{subsec:purpose_scope}}
-\label{tab:threats}
-\end{longtable}
 
+\end{longtable}
+\label{tab:threats}
+\clearpage
 
 
 
@@ -157,7 +161,7 @@ The following list details the relevant acceptance threshold for each
 \textbf{IS2:} interception/abuse of V2I , V2V communication & Disclosure of charging related information, vehicle destination and status & High (Violation of IT statute/regulation) & LV, PLV, FV, PFV, V2I, V2V, communication, BOA \\ \hline
 \textbf{IS3:} spoofing of back office and communicating to vehicles & Clients can be incorrectly charged, malicious redirection of vehicles, disclosure of client location & High (Violation of IT statute/regulation) & LV, PLV, FV, PFV, V2I communication, back office, vehicle meeting points \\ \hline
 \textbf{IS4:} software failure of BO server due to hacking or bugs & Inability to coordinate vehicles, resulting in loss of income due to inactivity & Medium (short term) - High (long term), (Violation of IT statute/regulation if malicious) & V2I communication, back office \\ \hline
-IS5: data input error by BOA due to software or lack of experience & Inability to coordinate vehicles, resulting in loss of income due to inactivity, loss of data integrity for that entry & Medium & V2I communication, back office \\ \hline
+\textbf{IS5:} data input error by BOA due to software or lack of experience & Inability to coordinate vehicles, resulting in loss of income due to inactivity, loss of data integrity for that entry & Medium & V2I communication, back office \\ \hline
 \textbf{IS6:} loss of GSM/GPS signal or map information & Inability to coordinate vehicles, resulting in loss of income due to inactivity & Medium (short term) - High (long term) & LV, PLV, FV, PFV, V2I communication, back office \\ \hline
 \textbf{IS7:} power failure in FV due to system misconfiguration or equipment failure & Inability to stay in patrol, potentially urgent driver attention needed to prevent accident & High (bad publicity, loss of income) & FV, PFV \\ \hline
 \textbf{IS8:} unauthorised access of BO server via hacking / spoofing vehicles & Compromise of information stored on the BO server (vehicle position/information, payment information, customer information) & High (Violation of IT statute/regulation, loss of income) & back office server \\ \hline
@@ -173,7 +177,7 @@ As details of the BO server’s security are sparse, but the server manages busi
 
 \paragraph{IS4: Software failure of BO server due to hacking or software failure \newline} 
 
-Software failure of the back end server would cause the inability of the BOA to coordinate platoon operations, thereby reducing the occurrence of revenue-generating actions. Reducing the probability and duration of BO server downtime is therefore crucial to the effectiveness of the system, in addition to minimising loss of turnover. This would require ensuring the adequacy of the implementation and configuration of the server, which can be achieved by extensive code review and testing of the server. Verifying the configuration of the server to existing industry standards could validate the effectiveness of the current server against the server standard required to mitigate this risk: viable standards include the ISO 27002 \citet{Iso2005-nn} or NIST Guide to General Server Security \citet{noauthor_undated-kw}. Additional care should be undertaken to defend against DDoS attacks: various defence mechanisms which could be implemented with a financial cost and delay in the product development can be found in \citet{Zargar2013-xx}.
+Software failure of the back end server would cause the inability of the BOA to coordinate platoon operations, thereby reducing the occurrence of revenue-generating actions. Reducing the probability and duration of BO server downtime is therefore crucial to the effectiveness of the system, in addition to minimising loss of turnover. This would require ensuring the adequacy of the implementation and configuration of the server, which can be achieved by extensive code review and testing of the server. Verifying the configuration of the server to existing industry standards could validate the effectiveness of the current server against the server standard required to mitigate this risk: viable standards include the ISO 27002 \cite{Iso2005-nn} or NIST Guide to General Server Security \cite{noauthor_undated-kw}. Additional care should be undertaken to defend against DDoS attacks: various defence mechanisms which could be implemented with a financial cost and delay in the product development can be found in \citet{Zargar2013-xx}.
 
 \paragraph{IS2: Interception \& abuse of V2I/V2V communication via GSM \newline}
 \label{par:IS2}
@@ -210,17 +214,15 @@ Two methods implement the password authentication for partial or pull authentica
 \subsection{Results \& Analysis}
 \subsubsection{Comparison of authentication methods}
 \label{subsec:authentication_methods}
-Our implementation was ran 150 times for $n1, n2 \in \{6,7,8\}, M = 50 * 10^6$, resulting in data with extremely precise confidence intervals as seen in \autoref{fig:approach_comparison} (in \autoref{app:figures}). The results demonstrate that for all combinations of password and passcode length, the second authentication system is more vulnerable to bulk guessing than the first. This is found to be statistically significant across all password/passcode combinations, as visible in \autoref{tab:significance} (in \autoref{app:significant_stats}), where a two-tailed Mann-Whitney test was used to show that $p<.01$ between each algorithm for all equivalent password/passcode policies. Partial password authentication is therefore between 1.91 and 3.5 times more likely to be randomly guessed, depending on the password/passcode policies chosen (minimum ratio at password/passcode of 8/7, and maximum ratio at 6/6) and the collision rate of passwords within the attack dictionaries.
+Our implementation was ran 150 times for $n1, n2 \in \{6,7,8\}, M = 50 \times 10^6$, resulting in data with extremely precise confidence intervals as seen in \autoref{fig:approach_comparison} (in \autoref{app:figures}). The results demonstrate that for all combinations of password and passcode length, the second authentication system is more vulnerable to bulk guessing than the first. This is found to be statistically significant across all password/passcode combinations, as visible in \autoref{tab:significance} (in \autoref{app:significant_stats}), where a two-tailed Mann-Whitney test was used to show that $p<.01$ between each algorithm for all equivalent password/passcode policies. Partial password authentication is therefore between 1.91 and 3.5 times more likely to be randomly guessed, depending on the password/passcode policies chosen (minimum ratio at password/passcode of 8/7, and maximum ratio at 6/6) and the collision rate of passwords within the attack dictionaries.
 
 These observations are most likely due to two effects. Firstly, we should state that every successful password guess in the full password system will be a successful guess in system B (with partial password matching), as the indices compared in the partial password system form a subset of the indices compared to the full password. Secondly, full passwords require the victim and attacker passwords to have the same length; this is not always the case, as the policy sets only a minimum bound on the password length, leading to mis-matched password lengths. This would cause the guess to fail for a full password, but not a partial password (assuming the characters stated indices matched). Finally, there is a significant number of password collisions at various indices which allow a larger number of guess passwords to correctly guess a victim's password. 
 
-This was verified using a brute force script (see \autoref{app:bruteforce}), which evaluated every combination of guess and victim password using either a full match or every combination of 3 indices within the password's length. This resulted in the data seen in \autoref{fig:collision_prob} (in \autoref{app:figures}): as we can see, the index-based authentication system (Syfull) results in a significantly higher probability of guessing a password in a bulk attack. Whilst our dataset may exaggerate this effect, it is reasonable to assume that whilst a single password can only be fully guessed by a copy of itself, it could be partially guessed by a larger number of passwords which happen to match it's characters in stated indices, and it is therefore more likely that one of these passwords will be selected at random as there are a larger number of them. 
+This was verified using a brute force script (see \autoref{app:bruteforce}), which evaluated every combination of guess and victim password using either a full match or every combination of 3 indices within the password's length. This resulted in the data seen in \autoref{fig:collision_prob} (in \autoref{app:figures}): as we can see, the index-based authentication system (Lloyds) results in a significantly higher probability of guessing a password in a bulk attack. Whilst our dataset may exaggerate this effect, it is reasonable to assume that whilst a single password can only be fully guessed by a copy of itself, it could be partially guessed by a larger number of passwords which happen to match it's characters in stated indices, and it is therefore more likely that one of these passwords will be selected at random as there are a larger number of them. 
 
 
 \subsubsection{Effects of password policy}
-The password policies have similar effects on both algorithms: increasing the passcode length decreases the number of successful guesses, whilst increasing the password length increases the number of successful guesses. The latter observation is at first surprising: as a larger password/passcode length would allow for a larger number of permutations, one would expect the number of successful guesses to decrease as the password's length increases due to a decreased probability. As this effect is observed for both forms of authentication, we can deduce it is not caused by the the difference in these systems (i.e: using 3 characters instead of a full password to establish validity). Further analysis of the data show that the number of valid passwords in our dataset decreases as we increase the minimum password length; for both our 500 attack passwords and the RockYou password distribution \cite{Cubrilovic2009-wu}. As visible in \autoref{fig:passwords_length} (in \autoref{app:figures}), this leads to a smaller number of possible guess password/account password combinations ($4 \times 10^6 $ for  passwords  of length $<= 8$, $9 \times 10^7$ for passwords of length $<= 6$). This results in a larger number of correct guesses for a fixed sample size, causing the effect seen in \autoref{fig:approach_comparison} (in \autoref{app:figures}). The effect does not occur for passcodes however, as the number of passcodes in \cite{Cubrilovic2009-wu} for each policy length remains roughly constant (89,595 for n=6 to 55,803 for n=8). 
-
-We could therefore state that increasing the minimum password length policy can cause user accounts which utilise dictionary passwords to be more vulnerable to bulk guessing, as the the set of possible passwords is reduced as the minimum size increases.
+The password policies have similar effects on both systems: passcode length negatively correlates with the number of successful guesses, whilst increasing the password length increases the number of successful guesses. The latter observation is at first surprising, as random larger passwords have a probabilistically smaller chance of being randomly guessed due to an increase in search space. As this effect is observed for both forms of authentication, we can deduce it is not caused by the the difference in these systems (i.e: using 3 characters instead of a full password to establish validity). Further analysis of the dictionary data show that the number of valid passwords in our dataset decreases as we increase the minimum password length; for both our 500 attack passwords and the RockYou password distribution \cite{Cubrilovic2009-wu}. As visible in \autoref{fig:passwords_length} (in \autoref{app:figures}), this leads to a smaller number of possible guess password/account password combinations ($4 \times 10^6 $ for  passwords  of length $<= 8$, $9 \times 10^7$ for passwords of length $<= 6$), resulting in a larger number of correct guesses for a fixed sample size, causing the effect seen in \autoref{fig:approach_comparison} (in \autoref{app:figures}). The effect does not noticeably occur for passcodes, as the number of passcodes in \cite{Cubrilovic2009-wu} for each policy length remains roughly constant (89,595 for n=6 to 55,803 for n=8). We could therefore state that increasing the minimum password length policy can cause user accounts which utilise dictionary passwords to be more vulnerable to bulk guessing, as the the set of possible passwords is reduced as the minimum size increases.
 
 
 
@@ -238,11 +240,11 @@ We could therefore state that increasing the minimum password length policy can 
 
 
 \subsection{Application of authentication systems}
-These two authentication systems are both viable systems, but differ in their ability to protect users from various forms of attack. As we have previously demonstrated in \autoref{subsec:authentication_methods}, partial password authentication is significantly more vulnerable to bulk guessing than a full password authentication (as discussed by \citet{Aspinall2013-sh}). This observation is restricted to the case where user-chosen passwords offer a high degree of collision with our attack dictionary (as demonstrated in \autoref{fig:collision_prob}); using system generated random passwords would likely reduce the difference in vulnerability to some extent, although partial guessing will still be more vulnerable due to the multitude of possible solutions to the challenge (the set of password characters requested by the authentication system). We should also note that the use of random passwords could result in more frequent password recovery emails, shifting the security vulnerability from the login system to the password reset system. The vulnerability can however be accentuated through the use of projection dictionaries, which would select the most common 3-tuple of characters at the challenge's stated indeces. We can therefore deduce that partial password authentication is more vulnerable than full password authentication when considering bulk guessing as the sole attack vector.
+These two authentication systems are both viable systems, but differ in their ability to protect users from various forms of attack. As we have previously demonstrated in \autoref{subsec:authentication_methods}, partial password authentication is significantly more vulnerable to bulk guessing than a full password authentication (as discussed by \citet{Aspinall2013-sh}). This observation is restricted to the case where user-chosen passwords offer a high degree of collision with our attack dictionary (as demonstrated in \autoref{fig:collision_prob}); using random system generated passwords would likely reduce the difference in vulnerability to some extent, although partial guessing will still be more vulnerable due to the multitude of possible solutions to the challenge (the set of password characters requested by the authentication system). We should also note that the use of random passwords could result in more frequent password recovery emails, shifting the security vulnerability from the login system to the password reset system. The vulnerability can however be accentuated through the use of projection dictionaries, which would select the most common 3-tuple of characters at the challenge's stated indices \cite{Aspinall2013-sh}. We can therefore deduce that partial password authentication is more vulnerable than full password authentication when considering bulk guessing as the sole attack vector.
 
-Within a real-world scenario, an attacker could easily improve his success rate by using additional tools. This represents one of the major benefits of partial passwords: a recorded session may not be sufficient to provide authentication, assuming that the challenge indices change between the victim and attacker's login attempts; in contrast, a full password authentication would allow the entire password to be recorded, allowing the attack to break that security with ease. Mitigating the effectiveness of keyloggers is therefore the primary use of partial passwords. \citet{Aspinall2013-sh} demonstrates that keyloggers can nevertheless greatly improve the success rate against partial passwords: a 25\% success rate was observed using dictionary attack with a single recording (vs 5.5\% without keylogger), and 81\% using 4 recordings. These were undertaken using a slightly different password policy: 36 alphanumeric characters (excluding symbols), a password length of 8, a 3 character challenge and a 10 attempt lockout. It remains applicable to our given case study, thereby demonstrated that the presence of a keylogger on a system for an extended period of time can greatly mitigate the benefit of partial passwords. We should nevertheless consider that partial passwords would provide security against shoulder-surfing attacks, where the attacker observes the victim logging in, as it is unlikely that the attacker will observe as many logins in person than using a discrete keylogger. 
+In a real-world scenario, an attacker could improve his success rate by using a keylogger. This highlights one of the major benefits of partial passwords: a single recorded successful authentication may not be sufficient to provide authentication, on the likely assumption that the challenge indices change between the victim and attacker's login attempts; in contrast, a full password authentication would allow the entire password to be recorded, allowing the attack to break that security with ease as the successive challenges will be equivalent. \citet{Aspinall2013-sh} demonstrates that keyloggers can nevertheless greatly improve the success rate against partial passwords: a 25\% success rate was observed using dictionary attack with a single recording (vs 5.5\% without keylogger), and 81\% using 4 recordings. The increase in success rate likely correlates with the probability of obtaining the correct password characters to beat a larger percentage of possible challenges. We should nevertheless consider that partial passwords would provide security against shoulder-surfing attacks, where the attacker observes the victim logging in, as it is unlikely that the attacker will observe as many logins in person than using a discrete keylogger. 
 
-Therefore, we can state that within the attack vector of password guessing through either bulk attack and/or keylogging, full and partial password authentication mitigate different attack vectors: partial passwords are more vulnerable to bulk guessing, but are more resistant to keylogging attacks, whilst full passwords are the opposite. Combining the two approaches may give some common benefit, as demonstrated by Lloyds Bank's system; this would complicate the attack by requiring both keylogging and bulk guessing (in either order) to guess the full password and partial passcode. In contrast, Virgin's authentication system could be more rapidly cracked using bulk guessing, which could be optimised by a key logger. This conclusion would stand assuming both systems had single step authentication; we should note that Lloyd's use of two-step authentication does reduce it's complexity (assuming the authentication process fails after entering an invalid UserID/password combination, as the sum of the complexity of guessing each authentication system reflects the system's overall security (as opposed to the product of each in the Virgin Money system). This is due to the feasibility of first cracking the password, followed by repeatedly guessing the passcode using the known password to pass the first authentication.
+Therefore, we can state that within the attack vector of password guessing through either bulk attack and/or keylogging, full and partial password authentication mitigate different attack vectors: partial passwords are more vulnerable to bulk guessing, but are more resistant to keylogging attacks, and vice-versa for full passwords. Combining the two approaches may give some common benefit, as demonstrated by Lloyds Bank's system; this would complicate the attack by requiring both keylogging and bulk guessing to guess the full password and partial passcode. In contrast, Virgin's authentication system could be more rapidly cracked using bulk guessing, which could be optimised by a key logger. This conclusion would stand assuming both systems had single step authentication; we should note that Lloyd's UI may indicate a two-step authentication, which could reduce it's complexity (assuming the authentication process fails after entering an invalid UserID/password combination, as the sum of the complexity of guessing each authentication system reflects the system's overall security (as opposed to the product of each in the Virgin Money system). This is due to the feasibility of first cracking the password, followed by repeatedly guessing the passcode using the known password to pass the first authentication. In the more likely case that the two-step process only returns after both passwords are inputted (and therefore the use of two pages is for user experience improvement only), the systems would be roughly equivalent in their safety from a combination keylogger \& dictionary attack.
 
 A further problem of partial passwords would include storing the password digest on a server side. While this is straightforward for full passwords, which can be fully salted and hashed to form the digest, partial passwords would require the use of a shared secret \cite{smartarchitect}, or storing multiple digests of every m-letter combination (where m is the size of the challenge) \cite{smartarchitect}. The latter solution would result in a large number of digests, which could be a source of vulnerability if a large sample of them were collected. 
 
@@ -251,19 +253,19 @@ A further problem of partial passwords would include storing the password digest
 
 
 \subsection{Counter-measures}
-Counter-measures to bulk guessing attacks would be two-fold: system side policies should reduce the success rate of bulk attacks to an acceptable threshold, and client side security must be put in place to reduce the vulnerability to keyloggers, as these are capable of greatly negating client side security. We will address these in the following two sections.
+Counter-measures to bulk guessing attacks would be two-fold: server-side policies should reduce the success rate of bulk attacks to an acceptable threshold, and client-side security must be put in place to reduce the vulnerability to keyloggers, as these are capable of greatly negating server side security. 
 
 \subsubsection{Server side policies}
-We can reduce the number of attempts that the attacker can make on a system, by imposing a rate limit on the number of authentication attempts from a host within a given timespan \cite{Florencio2007-yp}, or by imposing a 3-strike rule which would require the users to reset the password via a secure channel \cite{Florencio2007-yp}. These would mitigate the attacker's ability to conduct the attack by requiring either a larger number of attack sources (i.e: a botnet), and access to a large number of userID's with which to conduct the attack (as these will quickly be locked out by unsuccessful attempts). This could be a probabilistically (expected number of cracked accounts before all accounts are locked down $\approx$ 0) secure for smaller institutions, with hundreds rather than millions of accounts \cite{Florencio2007-yp}, but not wholly sufficient for large institutions. 
+Rate limitation allows a system to limit the size of a bulk attack, either through imposing a maximal number of attempts per account in a given timespan, \cite{Florencio2007-yp}, or by imposing a 3-strike rule which would require the users to reset the password via a secure channel \cite{Florencio2007-yp}. These would mitigate the attacker's ability to conduct the attack by requiring either a larger number of attack sources (i.e: a botnet), and access to a large number of userID's with which to conduct the attack (as these will quickly be locked out by unsuccessful attempts). This could be a probabilistically secure for smaller institutions (expected number of cracked accounts before all accounts are locked down $\approx$ 0), with hundreds rather than millions of accounts \cite{Florencio2007-yp}, but not sufficient for large institutions. 
 
-The latter factor can be greatly enlarged by increasing the userID size: this would greatly increase the credential space, requiring the attacker to either gather these credentials prior to the bulk guessing, or significantly increasing the complexity of the attack by forcing a userID to be randomly guessed \cite{Kosamkar_undated-ik}. The complexity could be further increased through the use of obfuscated errors to unsuccessful logins, which do not state whether the userID or password were incorrect, forcing the search to continue through a large credential space. Finally, the use of an Automated Turing Test, such as Google's AI-based captcha \cite{noauthor_undated-lk}, could cause a fraction of logins to be evaluated, as there is only a small probability of randomly guessing an ATT (by design). Placing this challenge in between the login attempt and response would prevent the attacker from viewing the result of a majority of attempts, thereby greatly increasing the complexity of the attack \cite{Alsaleh2012-ek}. \citet{Alsaleh2012-ek} demonstrates a comprehensive ATT protocol named PGRP (Password Guessing Resistant Protocol) which is effective at significantly reducing the effectiveness of bulk guessing.
+The latter factor can be greatly enlarged by increasing the userID size: this would greatly increase the credential space, requiring the attacker to either gather these credentials prior to the bulk guessing, or significantly increasing the complexity of the attack by forcing a userID to be randomly guessed \cite{Kosamkar_undated-ik}. The complexity could be further increased through the use of obfuscated errors to unsuccessful logins, which do not state whether the userID or password were incorrect, forcing the search to continue through a large credential space. Finally, the use of an Automated Turing Test (ATT), such as Google's AI-based captcha \cite{noauthor_undated-lk}, could cause a fraction of logins to be evaluated, as there is only a small probability of randomly guessing an ATT (by design). Placing this challenge in between the login attempt and response would prevent the attacker from viewing the result of a majority of attempts, thereby greatly increasing the complexity of the attack \cite{Alsaleh2012-ek}. \citet{Alsaleh2012-ek} demonstrates a comprehensive ATT protocol named PGRP (Password Guessing Resistant Protocol) which is effective at significantly reducing the effectiveness of bulk guessing.
 
-Password and passcode policies could be maximised to increase the complexity of the attack, but \citet{Florencio2007-yp} has determined that the combined userID/password credential space is more significant in deterring bulk guessing attacks than just the password space. Forcing the use of randomly generated password/passcodes could fully mitigate the benefit of dictionary or projected dictionary attacks \cite{Kosamkar_undated-ik}, which would greatly increase the attack complexity (\citet{Aspinall2013-sh} demonstrates the performance of brute force over 8 character alphanumerical passwords to be 0.002 \% success rate, against 5.5\% using a projected dictionary).
+\citet{Florencio2007-yp} has determined that the combined userID/password credential space is more significant in deterring bulk guessing attacks than just the password space. Forcing the use of randomly generated password/passcodes could fully mitigate the benefit of dictionary or projected dictionary attacks \cite{Kosamkar_undated-ik}, which would greatly increase the attack complexity (\citet{Aspinall2013-sh} demonstrates the performance of brute force over 8 character alphanumerical passwords to be 0.002 \% success rate, against 5.5\% using a projected dictionary).
 
-We could expect these methods to greatly increase the complexity of the attack, forcing the attacker to utilise a very large botnet and a large number of user passwords to crack fewer accounts. This would allow smaller institutions to almost fully mitigate the threat of bulk guessing attacks, whilst larger institutions could maintain their effectiveness to an acceptably small level, or at least improve their detectability. We should note that these methods are only viable to prevent on-line attack: if the rate-limiting methods were bypassed (for example by cracking the database off-line), the userID/password combinations would be the only form of attack mitigation remaining.
+We expect these methods to increase the complexity of the attack, forcing the attacker to utilise a very large botnet and a large number of user passwords to crack fewer accounts. This would allow smaller institutions to almost fully mitigate the threat of bulk guessing attacks, whilst larger institutions could maintain their effectiveness to an acceptably small level, or at least improve their detectability. We should note that if the rate-limiting methods were bypassed (for example by cracking the database off-line), the userID/password complexity would be the only form of attack mitigation remaining.
 
 \subsubsection{Client-side security}
-Finally, as \citet{Aspinall2013-sh} has demonstrated the significance of recording successful authentications on the vulnerability of partial passwords, ensuring the client's machine is adequately protected from keyloggers or shoulder surfing is paramount to the security of the user's account. The use of anti-spyware or anti-virus programs could allow the detection, disabling or cleansing of keyloggers, mitigating the chance of recording authentications. Additional software-based security could include network monitors, which could detect the keylogger's attempt to send the data back to the attacker, or on-screen keyboards which changes the input system. Stronger security systems could utilise security tokens, which could be obtained from dedicated hardware (such as a credit card reader, or smart-phone application) to obtain a one-time password which would be difficult to guess. These would represent the only hindrance to the system's acceptability, as it would require more complexity to utilise than simple userID/password/passcode authentication system. 
+Finally, \citet{Aspinall2013-sh} has demonstrated the significance of recording successful authentications on the vulnerability of partial passwords, ensuring the client's machine is adequately protected from keyloggers or shoulder surfing is paramount to the security of the user's account. The use of anti-spyware or anti-virus programs could allow the detection, disabling or cleansing of keyloggers, mitigating the chance of recording authentications. Additional software-based security could include network monitors, which could detect the keylogger's attempt to send the data back to the attacker, or on-screen keyboards which could bypass the keylogger. Stronger security systems could utilise security tokens obtained from dedicated hardware (such as a credit card reader, or smart-phone application) to obtain a one-time password. These would represent a small hindrance to the system's usability, as it would require more complexity to utilise than simple userID/password/passcode authentication system. This would ensure user security even if the userID/password/passcode credentials are stolen, as the complexity of replicating the second step can be unbeatable; this was demonstrated by the CEO of Valve Software, who released his username and password to demonstrate the security of the two step authentication system \cite{Purslow2011-qa}. This would therefore represent a very secure system at minimal cost, requiring the use of existing client hardware and additional software.
 
 \clearpage
 \bibliographystyle{IEEEtranSN}
@@ -291,7 +293,7 @@ Finally, as \citet{Aspinall2013-sh} has demonstrated the significance of recordi
 		 (7,12.37)  -=(0,0.034) += (0,0.450)
 		 (8,26.68)  -=(0,0.058) += (0,0.759)
 		    };
-		    \addlegendentry{full, passcode=6}
+		    \addlegendentry{Lloyds, passcode=6}
 
 		    \addplot[
 		 mark=x,
@@ -302,7 +304,7 @@ Finally, as \citet{Aspinall2013-sh} has demonstrated the significance of recordi
 		 (7,10.60) -= (0,0.030) += (0,0.397)
 		 (8,23.19) -= (0,0.049) += (0,0.645)
 		    };
-		    \addlegendentry{full, pass=7}    
+		    \addlegendentry{Lloyds, pass=7}    
 
 		    \addplot[
 		 mark=x,
@@ -312,7 +314,7 @@ Finally, as \citet{Aspinall2013-sh} has demonstrated the significance of recordi
 		 (7,6.84)  -= (0,0.024) += (0,0.319)
 		 (8,15.09) -= (0,0.039) += (0,0.504)
 		    };
-		    \addlegendentry{full, pass=8}
+		    \addlegendentry{Lloyds, pass=8}
 
 		    \addplot[
 		 mark=x,
@@ -324,7 +326,7 @@ Finally, as \citet{Aspinall2013-sh} has demonstrated the significance of recordi
 		 (7,32.85)  -=(0,0.058) += (0,0.753)
 		 (8,51.64)  -=(0,0.078) += (0,1.026)
 		    };
-		    \addlegendentry{partial, pass=6}
+		    \addlegendentry{Virgin, pass=6}
 
 		    \addplot[
 		 mark=x,
@@ -336,7 +338,7 @@ Finally, as \citet{Aspinall2013-sh} has demonstrated the significance of recordi
 		 (7,27.39) -= (0,0.057) += (0,0.749)
 		 (8,44.33) -= (0,0.070) += (0,0.921)
 		    };
-		    \addlegendentry{partial, pass=7}    
+		    \addlegendentry{Virgin, pass=7}    
 
 		    \addplot[
 		 mark=x,
@@ -347,7 +349,7 @@ Finally, as \citet{Aspinall2013-sh} has demonstrated the significance of recordi
 		 (7,17.93)  -= (0,0.046) += (0,0.599)
 		 (8,29.40)  -= (0,0.049) += (0,0.645)
 		    };
-		    \addlegendentry{partial, pass=8}
+		    \addlegendentry{Virgin, pass=8}
 
 		    \end{axis}
 		\end{tikzpicture}
@@ -376,12 +378,13 @@ Finally, as \citet{Aspinall2013-sh} has demonstrated the significance of recordi
 
 		 \addplot[style={red,fill=red,mark=none}]
 		     coordinates {(6,1.56E-04) (7,2.02E-04) (8,4.50E-04)};
-		 \legend{full, partial}
+		 \legend{Lloyd, Virgin}
 		    \end{axis}
 		\end{tikzpicture}
-		\caption{Probability of guessing a password using character sampled authentication (Syfull) and full password authentication (Sypart).}
+		\caption{Probability of guessing a password using character sampled authentication (Virgin) and full password authentication (LLoyd).}
 		\label{fig:collision_prob}
 	\end{figure}
+
 	\begin{figure}[!htb]
 		\begin{tikzpicture}
 		    \begin{axis}[ybar, xtick = {6,7,8}, xlabel = Minimum password length, ylabel = Number of valid account passwords in \cite{Cubrilovic2009-wu}]
@@ -409,7 +412,6 @@ Finally, as \citet{Aspinall2013-sh} has demonstrated the significance of recordi
 
 	\section{Main.py}\label{app:main}
 	\lstinputlisting[language=Python]{../main.py}	
-	\clearpage
 
 	\section{Statistics}\label{app:extra_stats}
 	\subsection{Compiled statistics}
@@ -418,7 +420,7 @@ Finally, as \citet{Aspinall2013-sh} has demonstrated the significance of recordi
 		\begin{tabular}{|l|l|l|l|l|l|l|l|}
 		\hline
 		& & \multicolumn{6}{l|}{\textbf{Auth system and passcode length}} \\ \hline
-		\textbf{Mean} & \textbf{Password len} & \textbf{full, 6} & \textbf{full, 7} & \textbf{full, 8} & \textbf{part, 6} & \textbf{part, 7} & \textbf{part, 8} \\ \hline
+		\textbf{Mean} & \textbf{Password len} & \textbf{Lloyds, 6} & \textbf{Lloyds, 7} & \textbf{Lloyds, 8} & \textbf{Virgin, 6} & \textbf{Virgin, 7} & \textbf{Virgin, 8} \\ \hline
 		 & 6 & 9.25 & 7.62 & 5.23 & 32.68 & 27.61 & 18.38 \\ \hline
 		 & 7 & 12.37 & 10.60 & 6.84 & 32.85 & 27.39 & 17.93 \\ \hline
 		 & 8 & 26.68 & 23.19 & 15.09 & 51.64 & 44.33 & 29.40 \\ \hline
@@ -456,9 +458,9 @@ Finally, as \citet{Aspinall2013-sh} has demonstrated the significance of recordi
   	The following table details the results of statistical tests between each authentication system using equivalent password/passcode length policies.
   	\begin{table}[!htb]
 	\centering
-	\begin{tabular}{|l|l|l|l|l|}
+	\begin{tabular}{|p{2cm}|l|l|l|l|}
 	\hline
-	\textbf{Password/Passcode length} & \textbf{full median} & \textbf{part median} & \textbf{Mann whitney Z-score} & \textbf{p value} \\ \hline
+	\textbf{Password/ Passcode length} & \textbf{Lloyds median} & \textbf{Virgin median} & \textbf{Mann whitney Z-score} & \textbf{p value} \\ \hline
 	6,6 & 9 & 33 & -14.974 & p\textless0.01 \\ \hline
 	6,7 & 7 & 27.5 & -14.974 & p\textless0.01 \\ \hline
 	6,8 & 5 & 18 & -15.100 & p\textless0.01 \\ \hline
@@ -477,9 +479,9 @@ Finally, as \citet{Aspinall2013-sh} has demonstrated the significance of recordi
 	\label{app:raw_data}
 	\begin{longtable}{|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|}
 	\hline
-	\multicolumn{18}{|l|}{\textbf{Password/Passcode policy in format N1/N2, full $\rightarrow$ full, part $\rightarrow$ partial}} \\ \hline
+	\multicolumn{18}{|l|}{\textbf{Password/Passcode policy in format N1/N2, Lloyds $\rightarrow$ full, Virgin $\rightarrow$ Virgin}} \\ \hline
 	\multicolumn{2}{|l|}{\textbf{6,6}} & \multicolumn{2}{l|}{\textbf{6,7}} & \multicolumn{2}{l|}{\textbf{6,8}} & \multicolumn{2}{l|}{\textbf{7,6}} & \multicolumn{2}{l|}{\textbf{7,7}} & \multicolumn{2}{l|}{\textbf{7,8}} & \multicolumn{2}{l|}{\textbf{8,6}} & \multicolumn{2}{l|}{\textbf{8,7}} & \multicolumn{2}{l|}{\textbf{8,8}} \\ \hline
-	full & part & full & part & full & part & full & part & full & part & full & part & full & part & full & part & full & part \\ \hline
+	LLo & Virg & LLo & Virg & LLo & Virg & LLo & Virg & LLo & Virg & LLo & Virg & LLo & Virg & LLo & Virg & LLo & Virg \\ \hline
 	12 & 36 & 6 & 27 & 3 & 24 & 7 & 23 & 10 & 21 & 6 & 17 & 21 & 42 & 32 & 51 & 16 & 26 \\ \hline
 	17 & 39 & 12 & 28 & 7 & 17 & 14 & 48 & 13 & 26 & 6 & 19 & 29 & 47 & 23 & 37 & 16 & 30 \\ \hline
 	11 & 27 & 5 & 23 & 5 & 11 & 13 & 42 & 13 & 26 & 5 & 11 & 31 & 57 & 20 & 46 & 18 & 35 \\ \hline
