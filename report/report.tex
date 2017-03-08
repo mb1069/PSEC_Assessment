@@ -242,7 +242,7 @@ These two authentication systems are both viable systems, but differ in their ab
 
 In a real-world scenario, an attacker could improve his success rate by using a keylogger. This highlights one of the major benefits of partial passwords: a single recorded successful authentication may not be sufficient to provide authentication, on the likely assumption that the challenge indices change between the victim and attacker's login attempts; in contrast, a full password authentication would allow the entire password to be recorded, allowing the attack to break that security with ease as the successive challenges will be equivalent. \citet{Aspinall2013-sh} demonstrates that keyloggers can nevertheless greatly improve the success rate against partial passwords: a 25\% success rate was observed using dictionary attack with a single recording (vs 5.5\% without keylogger), and 81\% using 4 recordings. The increase in success rate likely correlates with the probability of obtaining the correct password characters to beat a larger percentage of possible challenges. We should nevertheless consider that partial passwords would provide security against shoulder-surfing attacks, where the attacker observes the victim logging in, as it is unlikely that the attacker will observe as many logins in person than using a discrete keylogger. 
 
-Therefore, we can state that within the attack vector of password guessing through either bulk attack and/or keylogging, full and partial password authentication mitigate different attack vectors: partial passwords are more vulnerable to bulk guessing, but are more resistant to keylogging attacks, and vice-versa for full passwords. Combining the two approaches may give some common benefit, as demonstrated by Lloyds Bank's system; this would complicate the attack by requiring both keylogging and bulk guessing to guess the full password and partial passcode. In contrast, Virgin's authentication system could be more rapidly cracked using bulk guessing, which could be optimised by a key logger. This conclusion would stand assuming both systems had single step authentication; we should note that Lloyd's UI may indicate a two-step authentication, which could reduce it's complexity (assuming the authentication process fails after entering an invalid UserID/password combination, as the sum of the complexity of guessing each authentication system reflects the system's overall security (as opposed to the product of each in the Virgin Money system). This is due to the feasibility of first cracking the password, followed by repeatedly guessing the passcode using the known password to pass the first authentication. In the more likely case that the two-step process only returns after both passwords are inputted (and therefore the use of two pages is for user experience improvement only), the systems would be roughly equivalent in their safety from a combination keylogger \& dictionary attack.
+Therefore, we can state that within the attack vector of password guessing through either bulk attack and/or keylogging, full and partial password authentication mitigate different attack vectors: partial passwords are more vulnerable to bulk guessing, but are more resistant to keylogging attacks, and vice-versa for full passwords. Combining the two approaches may give some common benefit, as demonstrated by Lloyds Bank's system; this would complicate the attack by requiring both keylogging and bulk guessing to guess the full password and partial passcode. In contrast, Virgin's authentication system could be more rapidly cracked using bulk guessing, which could be optimised by a key logger. This conclusion would stand assuming both systems had single step authentication; we should note that Lloyds UI may indicate a two-step authentication, which could reduce it's complexity (assuming the authentication process fails after entering an invalid UserID/password combination, as the sum of the complexity of guessing each authentication system reflects the system's overall security (as opposed to the product of each in the Virgin Money system). This is due to the feasibility of first cracking the password, followed by repeatedly guessing the passcode using the known password to pass the first authentication. In the more likely case that the two-step process only returns after both passwords are inputted (and therefore the use of two pages is for user experience improvement only), the systems would be roughly equivalent in their safety from a combination keylogger \& dictionary attack.
 
 A further problem of partial passwords would include storing the password digest on a server side. While this is straightforward for full passwords, which can be fully salted and hashed to form the digest, partial passwords would require the use of a shared secret \cite{smartarchitect}, or storing multiple digests of every m-letter combination (where m is the size of the challenge) \cite{smartarchitect}. The latter solution would result in a large number of digests, which could be a source of vulnerability if a large sample of them were collected. 
 
@@ -285,7 +285,7 @@ Finally, \citet{Aspinall2013-sh} has demonstrated the significance of recording 
 		    \addplot[
 		 mark=x,
 		 blue,
-		 error bars/.cd, y dir=both, y explicit,
+		 error bars/.cd, y dir=both, y explicit, ,
 		    ] plot coordinates {
 		 (6,9.25)   -=(0,0.033) += (0,0.438)
 		 (7,12.37)  -=(0,0.034) += (0,0.450)
@@ -351,7 +351,7 @@ Finally, \citet{Aspinall2013-sh} has demonstrated the significance of recording 
 
 		    \end{axis}
 		\end{tikzpicture}
-		\caption{Mean number of successful guesses from ($50 \times 10^6 $) attempts using varying passcode length}
+		\caption{Mean number of successful guesses from ($50 \times 10^6 $) attempts using varying passcode length (with confidence intervals)}
 		\label{fig:approach_comparison}
 	\end{figure}
 	\begin{figure}[!htb]
@@ -376,10 +376,10 @@ Finally, \citet{Aspinall2013-sh} has demonstrated the significance of recording 
 
 		 \addplot[style={red,fill=red,mark=none}]
 		     coordinates {(6,1.56E-04) (7,2.02E-04) (8,4.50E-04)};
-		 \legend{Lloyd, Virgin}
+		 \legend{Lloyds, Virgin}
 		    \end{axis}
 		\end{tikzpicture}
-		\caption{Probability of guessing a password using character sampled authentication (Virgin) and full password authentication (LLoyd).}
+		\caption{Probability of guessing a password using character sampled authentication (Virgin) and full password authentication (LLoyds).}
 		\label{fig:collision_prob}
 	\end{figure}
 
