@@ -8,7 +8,7 @@ cp main.py submission/main.py
 cp bruteforce.py submission/bruteforce.py
 cp data/500-worst-passwords-processed.txt submission/data/500-worst-passwords-processed.txt
 cp data/rockyou-withcount-processed.txt submission/data/rockyou-withcount-processed.txt
-cp data/raw_data.csv submission/data/raw_data.csv
+cp report/data/raw_data.csv submission/data/raw_data.csv
 
 
 
