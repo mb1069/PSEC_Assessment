@@ -131,8 +131,8 @@ def main():
     parser.add_argument("m", metavar="M", help="Number of guesses", type=int)
     parser.add_argument("n1", metavar="N1", help="Min password length", type=int)
     parser.add_argument("n2", metavar="N2", help="Exact passcode length", type=int)
-    parser.add_argument("-its", help="Number of runs to undertake", default=1, type=int)
-    parser.add_argument("--save_file", help="Saves results to data/"+results_file, action='store_true')
+    parser.add_argument("-its", help="Number of times to run the program", default=1, type=int)
+    parser.add_argument("--save_file", help="Saves results to data/"+results_file+"or a specified filename in data/", action='store_true')
 
     args = parser.parse_args()
 

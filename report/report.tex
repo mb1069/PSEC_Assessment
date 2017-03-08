@@ -49,9 +49,9 @@
   breaklines=true,
   basicstyle=\ttfamily\footnotesize
   }
-\titlespacing{\section}{1em}{\parskip}{-\parskip}
-\titlespacing{\subsection}{1.5em}{\parskip}{-\parskip}
-% \titlespacing{\subsubsection}{1em}{\parskip}{-\parskip}
+% \titlespacing{\section}{1em}{\parskip}{-\parskip}
+\titlespacing{\subsection}{0pt}{\parskip}{0.5em}
+\titlespacing{\subsubsection}{0pt}{\parskip}{-\parskip}
 
 \usepackage[nottoc]{tocbibind}
 \usepackage{csvsimple}
@@ -63,11 +63,16 @@
 \maketitle
 \tableofcontents
 \clearpage
+\listoffigures
+\listoftables
+\clearpage
 
 \section{Question 1 - Security risk management assessment}
 \subsection{Purpose \& scope}
 \label{subsec:purpose_scope}
-The purpose of this report is to ensure the availability, integrity and safety of all stored and transmitted information within the SARTRE road train system. This is to ensure the availability of the system to users, the safety of the vehicles on the road, and most importantly the confidentiality of user data. The sum of these ensures the compliance of the SARTRE project to IT statute and regulation. This will be ensured using a risk criteria evaluated against the ISO 27005  standard \cite{Iso2005-nn} for information security risk management. 
+The purpose of this report is to ensure the availability, integrity and safety of all stored and transmitted information within the SARTRE road train system. This is to ensure the availability of the system to users (which minimises a loss of turnover), the safety of the vehicles on the road (minimise legal liability / loss of turnover in the case of accidents), and most importantly the confidentiality of user data (minimise liability in the case of disclosure of customer information).
+
+The sum of these ensures the compliance of the SARTRE project to IT statute and regulation. This will be ensured using a risk criteria evaluated against the ISO 27005  standard \cite{Iso2005-nn} for information security risk management. 
 
 The report's scope is restricted to the entities owned by an implementation of the SARTRE project, including vehicles \& server hardware, software, personnel, business processes and use of technologies. 
 
@@ -105,10 +110,10 @@ Finally, given the number of major stakeholders in the SARTRE project (notably t
 \subsection{Risk identification and treatment plan}
 The risks of this report were identified and treated in accordance to \citet{ISO_27005}; this methodology provides an industry standard level of security, thoroughly evaluating the origin, potential affect and tools for risk mitigation available within a defined scope of the project.
 \subsubsection{Threats}
-\begin{longtable}{|p{2cm}|p{1.5cm}|p{8cm}|p{3cm}|p{1cm}|}
+\begin{longtable}{|p{2cm}|p{1.5cm}|p{8cm}|p{3cm}|p{1.2cm}|}
 \hline
 \textbf{Type of threat origin} & \textbf{Origin of threat} & \textbf{Threat(s)} & \textbf{ISO Type} & \textbf{Origin} \\ \hline
-\multirow{3}{2cm}{\textbf{Human (insider)}} & LV/PLV driver & Tampering with hardware/software, theft of equipment: LVD uses equipment for personal gain/mischief. & Compromise of information & A, D \\ \cline{2-5} 
+\multirow{3}{2cm}{\textbf{Human (insider)}} & LV/PLV driver & Tampering with hardware/software, theft of equipment: LVD uses equipment for personal gain/mischief. & Compromise of information , Unauthorised actions& A, D \\ \cline{2-5} 
  & Back office admin & Unauthorised use of equipment: abuse of PLV/PFV matching to maliciously guide vehiclesFraudulent copying of software for industrial espionage & Unauthorised actions & A, D \\ \cline{2-5} 
  & Hardware installation engineer & Error in use: misconfiguration of vehicle equipment, improper maintenance & Error in use, Unauthorised use & A, D \\ \hline
 \multirow{2}{2cm}{\textbf{Human (outsider)}} & Computer criminal & Denial of Actions: DDoS on Back Office systemTampering with software: Subversion of Back Office, (erroneous data about lead vehicle positions)Position detection/Disclosure of client vehicle dataInterception of V2I communication leading to disclosure of payment or client informationSpoofing of V2V communication: endanger following vehicles & Unauthorised actions, Compromise of information & D \\ \cline{2-5} 
@@ -125,7 +130,7 @@ The risks of this report were identified and treated in accordance to \citet{ISO
 
 
 \subsubsection{Related assets}
-\begin{longtable}{|p{2cm}|p{2cm}|p{5cm}|p{1cm}|p{2cm}|p{2.5cm}|}
+\begin{longtable}{|p{2cm}|p{2cm}|p{5cm}|p{1cm}|p{2cm}|p{3cm}|}
 \hline
 \textbf{Type} & \textbf{Name} & \textbf{Description} & \textbf{Prim/ Supp} & \textbf{Owner} & \textbf{Related business process - relevance} \\ \hline
 \multirow{7}{2cm}{\textbf{Business processes (platoon management)}} & \textbf{Create platoon} & Begin a platoon to allow FV to join & P & BOA & Essential process \\ \cline{2-6} 
@@ -186,22 +191,15 @@ In order to retrieve information from FV or PFV, spoofing of the back office cou
 
 Furthermore, the presence of V2I or V2V communication could provide hackers a wireless access to vehicles, as demonstrated by \citet{Curri2015-zo}. As the self-driving functionality required in following cars is implemented by integrating the SARTRE system into the vehicle’s drive-by-wire control system, this may provide an additional entry point for hackers into the vehicle system, which could lead to the extraction of private user and payment information, in addition to the ability to maliciously affect the vehicle’s behaviour. It is therefore also possible for hackers to retrieve information from the cars, without regard to the BO server. The presence of a form of secure authentication/encryption on the car’s V2I interface could provide some risk reduction to this attack vector, and would require additional verification and validation to affirm its security standard.
 
-
-
-
-
 \clearpage
-
 
 \section{Question 2 - Bulk guessing tool}
 
 \subsubsection{Bulk guessing}
-Bulk guessing, as described by \citet{Florencio2007-yp}, is the action of attempting of accessing an authentication-protected account on a system by guessing the password for a large number of accounts, using a large number of guess passwords (which are either randomly generated or randomly sampled from a dictionary). Each guess utilises a separate guess password and victim, each of which are randomly selected from relevant attack dictionaries. As password policies set in place by institutions aim to deter attackers from guessing a single password, the act of attacking millions of accounts can yield a number successful guesses on a few different accounts. The tool designed for this project aims to demonstrates the expected success rate of a bulk guessing algorithm using an attack dictionary, which is evaluated against a set of statistically common passwords from \citet{Cubrilovic2009-wu} (also known as the rockyou set of passwords).
+Bulk guessing, as described by \citet{Florencio2007-yp}, is the action of guessing the credentials of a large number of accounts within the same attack, using a large number of guess passwords (which are either randomly generated or randomly sampled from a dictionary) and user accounts to access as many accounts as possible. Each guess utilises a separate guess password and victim, each of which are randomly selected from relevant attack dictionaries. The tool designed for this project aims to demonstrates the expected success rate of a bulk guessing algorithm using an attack dictionary against a set of statistically common passwords from \citet{Cubrilovic2009-wu} (also known as the rockyou set of passwords).
 
 \subsection{Design \& Implementation}
-The tool is implemented in python 2.7.6, and can be ran using the command \lstinline{python main.py M N1 N2} where M is the number of guesses, N1 is the minimum password length and N2 is the exact password length. This will print an output detailing the number of correct guesses for each authentication method. Additional options can be passed to the tool: \lstinline{-its n} runs the program n times, and \lstinline{--save_file} saves the results of each run to a specified file in the format (number of full matches, number of partial matches) for M attempts.
-
-
+The tool is implemented in Python 2.7.6, and can be ran using the command \lstinline{python main.py M N1 N2} where M is the number of guesses, N1 is the minimum password length and N2 is the exact passcode length. This will print an output detailing the number of correct guesses for each authentication method. Additional program options can be found using the command \lstinline{python main.py -h}. 
 \subsubsection{Code description and optimisation}
 Two classes are used to handle data sources. AttackPasswords is used to retrieve the passwords used in bulk guessing, and pre-filters them according to arguments N1 and N2. An error check is put into place to ensure the lists of policy-compliant passwords/passcodes are not empty, as this would be an unusable attack vector for bulk guessing given our attack dictionaries. The class also implements $pick\_password\_passcode()$ which returns a (password, passcode) tuple randomly selected from the list of 500 passwords.
 
