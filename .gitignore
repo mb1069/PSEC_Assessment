@@ -96,7 +96,7 @@ report/*.aux
 report/*.out
 report/*.pdf
 report/*.gz
-report/*.toc
+report/*.to*
 report/*.bbl
 report/*.blg
 results/
