@@ -74,7 +74,7 @@ The purpose of this report is to ensure the availability, integrity and safety o
 
 The sum of these ensures the compliance of the SARTRE project to IT statute and regulation. This will be ensured using a risk criteria evaluated against the ISO 27005  standard \cite{Iso2005-nn} for information security risk management. 
 
-The report's scope is restricted to the entities owned by an implementation of the SARTRE project, including vehicles \& server hardware, software, personnel, business processes and use of technologies. 
+The report's scope is restricted to the entities owned by an implementation of the SARTRE project, including vehicles \& server hardware, software, personnel, business processes and use of technologies. The pre-installed hardware from the FV's was also considered, as although it was not installed by the firm as part of the SARTRE implementation, it's systems will still be commmunicating with the BO and other vehicles, making it a possible source of threats.
 
 \subsection{Risk evaluation criteria}
 The risk evaluation criteria for this security assessment is defined by the following criteria, in order of decreasing importance.
@@ -106,7 +106,7 @@ Finally, given the number of major stakeholders in the SARTRE project (notably t
 	\item Threshold for negative effects on project/stakeholder reputation - low
 \end{itemize}
 
-\clearpage
+% \clearpage
 \subsection{Risk identification and treatment plan}
 The risks of this report were identified and treated in accordance to \citet{ISO_27005}; this methodology provides an industry standard level of security, thoroughly evaluating the origin, potential affect and tools for risk mitigation available within a defined scope of the project.
 \subsubsection{Threats}
@@ -125,7 +125,7 @@ The risks of this report were identified and treated in accordance to \citet{ISO
 
 \end{longtable}
 \label{tab:threats}
-\clearpage
+% \clearpage
 
 
 
@@ -383,7 +383,7 @@ Finally, \citet{Aspinall2013-sh} has demonstrated the significance of recording 
 		\caption{Probability of guessing a password using character sampled authentication (Virgin) and full password authentication (LLoyds).}
 		\label{fig:collision_prob}
 	\end{figure}
-
+	\clearpage
 	\begin{figure}[!htb]
 		\begin{tikzpicture}
 		    \begin{axis}[ybar, xtick = {6,7,8}, xlabel = Minimum password length, ylabel = Number of valid account passwords in \cite{Cubrilovic2009-wu}]
@@ -407,11 +407,12 @@ Finally, \citet{Aspinall2013-sh} has demonstrated the significance of recording 
 		\caption{Count of valid passwords in \cite{Cubrilovic2009-wu} for each password policy}
 		\label{fig:passwords_length}
 	\end{figure}
-	\clearpage
+	% \clearpage
 
 	\section{Main.py}\label{app:main}
 	\lstinputlisting[language=Python]{../main.py}	
-
+	\clearpage
+	
 	\section{Statistics}\label{app:extra_stats}
 	\subsection{Compiled statistics}
 	\begin{table}[!htb]
